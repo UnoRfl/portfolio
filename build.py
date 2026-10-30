@@ -1,5 +1,6 @@
 """Build the portfolio's static pages. Run: python build.py  (pass --offline to reuse the cached GitHub heatmap)."""
 import datetime
+import hashlib
 import html
 import json
 import subprocess
@@ -11,6 +12,11 @@ SITE = 'https://unorfl.github.io/portfolio/'
 EMAIL = 'improvised30@gmail.com'
 GITHUB = 'https://github.com/UnoRfl'
 e = html.escape
+
+
+def ver(path):
+    # content hash in the URL, so browsers fetch new CSS/JS the moment it changes
+    return hashlib.sha1((ROOT / path).read_bytes()).hexdigest()[:8]
 
 PROJECTS = [
     dict(slug='tpn-os', title='TPN OS', year='2026', cats='web', tags=['Supabase', 'Android', 'ESC/POS'],
@@ -93,12 +99,12 @@ SKILLS = [
     ('3D &amp; Motion', ['Blender', 'Cycles', 'Canvas animation', 'Puppeteer']),
 ]
 TIMELINE = [
-    ('Sept 2025', 'Started building', 'Began teaching myself to build for the web, one small project at a time.'),
-    ('SY 2026–27', 'BSIT Game Development, UPHSD', 'First year of BS Information Technology, Game Development track, at the University of Perpetual Help System DALTA.'),
-    ('Jul 2026', 'Orbit', 'My first public app: student scheduling with a live campus map.'),
-    ('Aug 2026', 'TPN OS begins', 'Started a point-of-sale system to replace a restaurant’s paid POS.'),
-    ('Sept 2026', 'NOVA goes open source', 'Released my voice console for Claude Code under the MIT licence.'),
-    ('Oct 2026', 'Hardware and games', 'Shipped Pocket Nova and Mochi Print, and started Steal a Spellbook on Roblox.'),
+    ('Chapter 01', 'First lines of code', 'Picked up web development and started building small projects just to see how things work.'),
+    ('Chapter 02', 'A first public app', 'Shipped an app that real people signed up for, and learned fast what users actually expect.'),
+    ('Chapter 03', 'Built for a real business', 'Made a complete system a business runs on every day, from the front counter to the kitchen.'),
+    ('Chapter 04', 'Code meets hardware', 'Wrote firmware and apps for small gadgets, from a pocket-sized remote to a tiny photo printer.'),
+    ('Chapter 05', 'Into game development', 'Started building my own games and worlds, with plenty more on the way.'),
+    ('Next', 'Still exploring', 'Always picking up something new: 3D, motion, and whatever catches my eye next.'),
 ]
 
 GH_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>'
@@ -134,7 +140,7 @@ def page(name, title, desc, active, body, after=''):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v={ver('assets/css/site.css')}">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -173,7 +179,7 @@ def page(name, title, desc, active, body, after=''):
 <p class="copy">© {year} Uno</p>
 </div>
 </div>
-{after}<script src="assets/js/site.js" defer></script>
+{after}<script src="assets/js/site.js?v={ver('assets/js/site.js')}" defer></script>
 </body>
 </html>
 '''
@@ -353,7 +359,7 @@ def build_about():
 </div>
 </section>
 <section class="band timeline-band">
-<div class="reveal"><span class="kicker">02 — Timeline</span><h2 class="h2">So far</h2></div>
+<div class="reveal"><span class="kicker">02 — Journey</span><h2 class="h2">So far</h2></div>
 <ol class="timeline">
 {tl}
 </ol>
