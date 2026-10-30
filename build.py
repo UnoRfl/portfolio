@@ -3,6 +3,7 @@ import datetime
 import hashlib
 import html
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -122,7 +123,7 @@ def nav_items(active, cls=''):
 
 
 def page(name, title, desc, active, body, after=''):
-    full_title = 'Juan Rafael — Web Developer // Game Developer' if name == 'index.html' else f'{title} — Uno'
+    full_title = 'Juan Rafael | Web Developer // Game Developer' if name == 'index.html' else f'{title} | Uno'
     year = datetime.date.today().year
     doc = f'''<!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -136,7 +137,8 @@ def page(name, title, desc, active, body, after=''):
 <meta property="og:title" content="{full_title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="{SITE}assets/img/og.jpg">
-<meta property="og:url" content="{SITE}{'' if name == 'index.html' else name}">
+<meta property="og:url" content="{SITE}{'' if name == 'index.html' else name[:-5]}">
+<link rel="canonical" href="{SITE}{'' if name == 'index.html' else name[:-5]}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon-32.png?v={ver('favicon-32.png')}" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon-64.png?v={ver('favicon-64.png')}" type="image/png" sizes="64x64">
@@ -185,6 +187,8 @@ def page(name, title, desc, active, body, after=''):
 </body>
 </html>
 '''
+    doc = re.sub(r'href="index\.html"', 'href="./"', doc)
+    doc = re.sub(r'href="([a-z0-9-]+)\.html"', r'href="\1"', doc)
     (ROOT / name).write_text(doc, encoding='utf-8')
     print('wrote', name)
 
@@ -224,7 +228,7 @@ def build_home():
 </section>
 <section class="section">
 <div class="section-head reveal">
-<div><span class="kicker">01 — Selected work</span><h2 class="h2">Built for real use</h2></div>
+<div><span class="kicker"><span class="no">01</span>Selected work</span><h2 class="h2">Built for real use</h2></div>
 <a class="link" href="work.html">All projects →</a>
 </div>
 <div class="grid-cards" data-stagger>
@@ -232,7 +236,7 @@ def build_home():
 </div>
 </section>
 <section class="section focus-sec">
-<div class="section-head reveal"><div><span class="kicker">02 — What I’m into</span><h2 class="h2">Always trying something new</h2></div></div>
+<div class="section-head reveal"><div><span class="kicker"><span class="no">02</span>What I’m into</span><h2 class="h2">Always trying something new</h2></div></div>
 <div class="focus" data-stagger>
 <div class="stat reveal"><span class="idx">01</span><h3>Web development</h3><p>Sites and apps that feel quick, clear and simple to use.</p></div>
 <div class="stat reveal"><span class="idx">02</span><h3>Game development</h3><p>Worlds, mechanics and the small details that make them fun.</p></div>
@@ -287,19 +291,19 @@ def build_project(i, p):
 <div><dt>Link</dt><dd>{link}</dd></div>
 </dl>
 <section class="p-sec reveal">
-<h2>01 — The problem</h2>
+<h2><span class="no">01</span>The problem</h2>
 <div><p class="big">{p['problem'][0]}</p><p class="body">{p['problem'][1]}</p></div>
 </section>
 <section class="p-sec reveal">
-<h2>02 — What I built</h2>
+<h2><span class="no">02</span>What I built</h2>
 <div><p class="body">{p['built'][0]}</p><ul class="p-list">{bullets}</ul></div>
 </section>
 <section class="shots-sec">
-<div class="shots-head reveal"><h2>03 — Screenshots</h2><span class="year">Click to enlarge</span></div>
+<div class="shots-head reveal"><h2><span class="no">03</span>Screenshots</h2><span class="year">Click to enlarge</span></div>
 <div class="shots" data-stagger>{shots}</div>
 </section>
 <section class="p-sec reveal">
-<h2>04 — Result</h2>
+<h2><span class="no">04</span>Result</h2>
 <div><p class="big">{p['result'][0]}</p><p class="body">{p['result'][1]}</p><p class="body"><span class="learned">What I learned:</span> {p['result'][2]}</p></div>
 </section>
 <a class="next reveal" href="{nxt['slug']}.html">
@@ -344,7 +348,7 @@ def build_about():
     total, months, weeks, today = heatmap()
     body = f'''<div class="wrap">
 <section class="about-top">
-<div class="portrait reveal" role="img" aria-label="うの — Uno in Japanese calligraphy"><img class="mono" src="assets/img/uno-ink-gold.webp" alt="" width="321" height="900"><span class="tag">Web Developer // Game Developer</span></div>
+<div class="portrait reveal" role="img" aria-label="うの, Uno in Japanese calligraphy"><img class="mono" src="assets/img/uno-ink-gold.webp" alt="" width="321" height="900"><span class="tag">Web Developer // Game Developer</span></div>
 <div class="about-copy">
 <div class="eyebrow reveal"><span>About</span></div>
 <h1 class="h1 reveal" style="--d:.06s">I like building things that leave the screen.</h1>
@@ -355,19 +359,19 @@ def build_about():
 </div>
 </section>
 <section class="band section" style="padding-top:120px">
-<div class="section-head reveal"><div><span class="kicker">01 — Skills</span><h2 class="h2">Tools I reach for</h2></div></div>
+<div class="section-head reveal"><div><span class="kicker"><span class="no">01</span>Skills</span><h2 class="h2">Tools I reach for</h2></div></div>
 <div class="skills" data-stagger>
 {skills}
 </div>
 </section>
 <section class="band timeline-band">
-<div class="reveal"><span class="kicker">02 — Journey</span><h2 class="h2">So far</h2></div>
+<div class="reveal"><span class="kicker"><span class="no">02</span>Journey</span><h2 class="h2">So far</h2></div>
 <ol class="timeline">
 {tl}
 </ol>
 </section>
 <section class="band gh" aria-label="GitHub activity">
-<div class="section-head reveal"><div><span class="kicker">03 — On GitHub</span><h2 class="h2">{total} contributions this year</h2></div><a class="link always" href="{GITHUB}">@UnoRfl ↗</a></div>
+<div class="section-head reveal"><div><span class="kicker"><span class="no">03</span>On GitHub</span><h2 class="h2">{total} contributions this year</h2></div><a class="link always" href="{GITHUB}">@UnoRfl ↗</a></div>
 <div class="heat-scroll reveal">
 <div class="heat" role="img" aria-label="GitHub contribution heatmap for the last year: {total} contributions">
 <div class="heat-months" aria-hidden="true">{months}</div>

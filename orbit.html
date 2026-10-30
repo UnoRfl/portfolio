@@ -3,20 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orbit — Uno</title>
+<title>Orbit | Uno</title>
 <meta name="description" content="Orbit: Student social and scheduling app with plans, chat and a live map of friends on campus.">
 <meta name="theme-color" content="#121212">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Orbit — Uno">
+<meta property="og:title" content="Orbit | Uno">
 <meta property="og:description" content="Orbit: Student social and scheduling app with plans, chat and a live map of friends on campus.">
 <meta property="og:image" content="https://unorfl.github.io/portfolio/assets/img/og.jpg">
-<meta property="og:url" content="https://unorfl.github.io/portfolio/orbit.html">
+<meta property="og:url" content="https://unorfl.github.io/portfolio/orbit">
+<link rel="canonical" href="https://unorfl.github.io/portfolio/orbit">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon-32.png?v=bd754bff" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon-64.png?v=2c873264" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=bfe28c88">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=cee3917f">
+<link rel="stylesheet" href="assets/css/site.css?v=3df46317">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -24,12 +25,12 @@
 <div class="shell">
 <aside class="side" aria-label="Site">
 <div class="side-in">
-<a class="logo" href="index.html" aria-label="Home"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
+<a class="logo" href="./" aria-label="Home"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
 <nav class="nav" aria-label="Main"><ul>
-<li><a href="index.html">Home</a></li>
-<li><a class="on" href="work.html" aria-current="page">Work</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
+<li><a href="./">Home</a></li>
+<li><a class="on" href="work" aria-current="page">Work</a></li>
+<li><a href="about">About</a></li>
+<li><a href="contact">Contact</a></li>
 </ul></nav>
 <div class="side-foot">
 <ul class="soc"><li><a href="https://github.com/UnoRfl" aria-label="GitHub"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li></ul>
@@ -39,13 +40,13 @@
 </aside>
 <main id="content">
 <div class="mtop">
-<a class="logo" href="index.html" aria-label="Home"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
+<a class="logo" href="./" aria-label="Home"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
 <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-open-menu><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg></button>
 </div>
 <div class="media p-hero"><img src="assets/img/orbit-hero.webp" alt="Orbit" loading="eager" fetchpriority="high" decoding="async"></div>
 <div class="wrap">
 <header class="p-head">
-<a class="link reveal" href="work.html">← All work</a>
+<a class="link reveal" href="work">← All work</a>
 <h1 class="h1 reveal" style="--d:.06s">Orbit</h1>
 <p class="lede reveal" style="--d:.12s">A social and scheduling app that shows students when their friends are free, and where.</p>
 </header>
@@ -56,22 +57,22 @@
 <div><dt>Link</dt><dd><a class="link always" href="https://unorfl.github.io/Orbit/">unorfl.github.io/Orbit ↗</a></dd></div>
 </dl>
 <section class="p-sec reveal">
-<h2>01 — The problem</h2>
+<h2><span class="no">01</span>The problem</h2>
 <div><p class="big">Classmates kept missing each other between classes.</p><p class="body">Free periods, study groups and lunch plans were scattered across group chats, and nobody could tell who was free right now or where they were on campus.</p></div>
 </section>
 <section class="p-sec reveal">
-<h2>02 — What I built</h2>
+<h2><span class="no">02</span>What I built</h2>
 <div><p class="body">An installable web app with no build step: Preact and Supabase served straight from GitHub Pages. Students share their class schedule, make plans, chat, and can opt in to a live map that shows friends on campus. The app checks how capable the phone is before the first paint, so cheaper phones get a lighter version instead of a laggy one.</p><ul class="p-list"><li><span>A</span>Plans, chat and shared class schedules</li><li><span>B</span>Opt-in live location on a campus map</li><li><span>C</span>Device tiers so low-end phones stay smooth</li></ul></div>
 </section>
 <section class="shots-sec">
-<div class="shots-head reveal"><h2>03 — Screenshots</h2><span class="year">Click to enlarge</span></div>
+<div class="shots-head reveal"><h2><span class="no">03</span>Screenshots</h2><span class="year">Click to enlarge</span></div>
 <div class="shots" data-stagger><button type="button" class="shot media reveal" data-full="assets/img/orbit-shot-1.webp" data-cap="Sign-in screen" aria-label="Open screenshot: Sign-in screen"><img src="assets/img/orbit-shot-1.webp" alt="" loading="lazy" decoding="async"></button><button type="button" class="shot media reveal" data-full="assets/img/orbit-shot-2.webp" data-cap="App preview" aria-label="Open screenshot: App preview"><img src="assets/img/orbit-shot-2.webp" alt="" loading="lazy" decoding="async"></button></div>
 </section>
 <section class="p-sec reveal">
-<h2>04 — Result</h2>
+<h2><span class="no">04</span>Result</h2>
 <div><p class="big">My first public app.</p><p class="body">Orbit went live in July 2026 and is where I learned Supabase, row-level security and realtime.</p><p class="body"><span class="learned">What I learned:</span> privacy has to be designed in from the start. Live location only works if people trust exactly who can see them and when.</p></div>
 </section>
-<a class="next reveal" href="mochi-print.html">
+<a class="next reveal" href="mochi-print">
 <span><span class="kicker">Next project</span><span class="name">Mochi Print</span></span>
 <span class="arrow" aria-hidden="true">→</span>
 </a>
@@ -80,14 +81,14 @@
 </div>
 <div class="drawer" id="drawer" aria-hidden="true">
 <div class="drawer-top">
-<a class="logo" href="index.html" aria-label="Home" style="width:40px;height:40px;border-radius:12px"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
+<a class="logo" href="./" aria-label="Home" style="width:40px;height:40px;border-radius:12px"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
 <button type="button" class="menu-btn" aria-label="Close menu" data-close-menu><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
 </div>
 <nav aria-label="Mobile"><ul>
-<li><a href="index.html">Home</a></li>
-<li><a class="on" href="work.html" aria-current="page">Work</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
+<li><a href="./">Home</a></li>
+<li><a class="on" href="work" aria-current="page">Work</a></li>
+<li><a href="about">About</a></li>
+<li><a href="contact">Contact</a></li>
 </ul></nav>
 <div class="side-foot">
 <ul class="soc"><li><a href="https://github.com/UnoRfl" aria-label="GitHub"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li></ul>
@@ -99,6 +100,6 @@
 <img src="" alt="">
 <div class="lb-bar"><button type="button" class="lb-btn" data-prev>← Prev</button><span data-lb-cap></span><button type="button" class="lb-btn" data-next>Next →</button></div>
 </div>
-<script src="assets/js/site.js?v=b0198a04" defer></script>
+<script src="assets/js/site.js?v=fa68c470" defer></script>
 </body>
 </html>

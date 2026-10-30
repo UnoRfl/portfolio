@@ -129,6 +129,7 @@ main { flex: 999 1 560px; min-width: 0; }
 
 /* ---------- type ---------- */
 .eyebrow { display: flex; align-items: center; gap: 16px; }
+.no { color: var(--accent); margin-right: 14px; }
 .eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
 .kicker, .eyebrow span { font-size: 12px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--dim); }
 .display { font-size: clamp(56px, 8vw, 112px); line-height: .98; letter-spacing: -.035em; font-weight: 500; }

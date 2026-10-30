@@ -121,7 +121,7 @@
       e.preventDefault();
       var note = form.querySelector('.form-note');
       if (!form.reportValidity()) return;
-      var body = form.message.value + '\n\n— ' + form.name.value + ' (' + form.email.value + ')';
+      var body = form.message.value + '\n\nFrom: ' + form.name.value + ' (' + form.email.value + ')';
       window.location.href = 'mailto:' + form.dataset.to +
         '?subject=' + encodeURIComponent('Portfolio enquiry from ' + form.name.value) +
         '&body=' + encodeURIComponent(body);
