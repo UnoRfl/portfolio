@@ -129,11 +129,11 @@
     });
   }
 
-  // Seismic field: a lens follows the cursor and reveals the traces underneath.
+  // Topographic map: a lens follows the cursor and reveals the traces underneath.
   // Only transforms change per frame, and the loop stops once the lens settles.
-  var quake = document.querySelector('.quake');
-  if (quake && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    var lens = quake.firstElementChild, field = lens.firstElementChild;
+  var topo = document.querySelector('.topo');
+  if (topo && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var lens = topo.firstElementChild, field = lens.firstElementChild;
     var tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty, raf = 0;
     var ease = reduced ? 1 : 0.16;
     var step = function () {
@@ -144,10 +144,10 @@
     };
     addEventListener('pointermove', function (e) {
       tx = e.clientX; ty = e.clientY;
-      quake.classList.add('on');
+      topo.classList.add('on');
       if (!raf) raf = requestAnimationFrame(step);
     }, { passive: true });
-    document.documentElement.addEventListener('pointerleave', function () { quake.classList.remove('on'); });
+    document.documentElement.addEventListener('pointerleave', function () { topo.classList.remove('on'); });
   }
 
   // Page transitions where cross-document View Transitions aren't supported

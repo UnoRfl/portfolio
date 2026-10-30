@@ -366,18 +366,18 @@ main { flex: 999 1 560px; min-width: 0; }
 .form .btn { align-self: flex-start; padding: 0 40px; }
 .form-note { font-size: 13px; line-height: 1.6; color: var(--dim); min-height: 21px; }
 
-/* ---------- seismic field (pointer devices only) ---------- */
+/* ---------- topographic map (pointer devices only) ---------- */
 .shell { position: relative; z-index: 1; }
-.quake { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: 0; transition: opacity .6s ease; }
-.quake.on { opacity: 1; }
-.quake-lens {
+.topo { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: 0; transition: opacity .6s ease; }
+.topo.on { opacity: 1; }
+.topo-lens {
   position: absolute; left: -300px; top: -300px; width: 600px; height: 600px; border-radius: 50%; overflow: hidden;
   -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, .55) 45%, transparent 100%);
   mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, .55) 45%, transparent 100%);
   will-change: transform; contain: strict;
 }
-.quake-field { position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; opacity: .32; background: url('../img/seismic.svg') center / cover no-repeat; will-change: transform; }
-@media (hover: none), (pointer: coarse) { .quake { display: none; } }
+.topo-field { position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; opacity: .32; background: url('../img/topo.svg') center / cover no-repeat; will-change: transform; }
+@media (hover: none), (pointer: coarse) { .topo { display: none; } }
 
 /* ---------- reveal on scroll ---------- */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }

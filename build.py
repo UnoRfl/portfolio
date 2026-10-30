@@ -136,12 +136,12 @@ def page(name, title, desc, active, body, after=''):
 <meta property="og:type" content="website">
 <meta property="og:title" content="{full_title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{SITE}assets/img/og-card.jpg">
+<meta property="og:image" content="{SITE}assets/img/og-card-2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Juan Rafael, Web Developer // Game Developer">
 <meta property="og:site_name" content="Juan Rafael">
-<meta name="twitter:image" content="{SITE}assets/img/og-card.jpg">
+<meta name="twitter:image" content="{SITE}assets/img/og-card-2.jpg">
 <meta property="og:url" content="{SITE}{'' if name == 'index.html' else name[:-5]}">
 <link rel="canonical" href="{SITE}{'' if name == 'index.html' else name[:-5]}">
 <meta name="twitter:card" content="summary_large_image">
@@ -153,7 +153,7 @@ def page(name, title, desc, active, body, after=''):
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
-<div class="quake" aria-hidden="true"><div class="quake-lens"><div class="quake-field"></div></div></div>
+<div class="topo" aria-hidden="true"><div class="topo-lens"><div class="topo-field"></div></div></div>
 <div class="shell">
 <aside class="side" aria-label="Site">
 <div class="side-in">
