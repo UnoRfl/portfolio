@@ -116,7 +116,7 @@ def nav_items(active, cls=''):
 
 
 def page(name, title, desc, active, body, after=''):
-    full_title = 'Uno — Student developer &amp; maker' if name == 'index.html' else f'{title} — Uno'
+    full_title = 'Juan Rafael — Web Developer // Game Developer' if name == 'index.html' else f'{title} — Uno'
     year = datetime.date.today().year
     doc = f'''<!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -138,10 +138,11 @@ def page(name, title, desc, active, body, after=''):
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
+<div class="quake" aria-hidden="true"><div class="quake-lens"><div class="quake-field"></div></div></div>
 <div class="shell">
 <aside class="side" aria-label="Site">
 <div class="side-in">
-<a class="logo" href="index.html" aria-label="Home">U</a>
+<a class="logo" href="index.html" aria-label="Home"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
 <nav class="nav" aria-label="Main"><ul>
 {nav_items(active)}
 </ul></nav>
@@ -153,7 +154,7 @@ def page(name, title, desc, active, body, after=''):
 </aside>
 <main id="content">
 <div class="mtop">
-<a class="logo" href="index.html" aria-label="Home">U</a>
+<a class="logo" href="index.html" aria-label="Home"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
 <button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-open-menu>{MENU_ICON}</button>
 </div>
 {body}
@@ -161,7 +162,7 @@ def page(name, title, desc, active, body, after=''):
 </div>
 <div class="drawer" id="drawer" aria-hidden="true">
 <div class="drawer-top">
-<a class="logo" href="index.html" aria-label="Home" style="width:40px;height:40px;border-radius:12px;font-size:15px">U</a>
+<a class="logo" href="index.html" aria-label="Home" style="width:40px;height:40px;border-radius:12px"><img src="assets/img/uno-ink-dark.webp" alt="" width="57" height="160"></a>
 <button type="button" class="menu-btn" aria-label="Close menu" data-close-menu>{CLOSE_ICON}</button>
 </div>
 <nav aria-label="Mobile"><ul>
@@ -205,8 +206,8 @@ def build_home():
     cards = '\n'.join(card(p, eager=True) for p in PROJECTS[:3])
     body = f'''<div class="wrap">
 <section class="hero">
-<div class="eyebrow reveal"><span>Student developer &amp; maker</span></div>
-<h1 class="display reveal" style="--d:.06s">Uno</h1>
+<div class="eyebrow reveal"><span>Web Developer // Game Developer</span></div>
+<h1 class="display reveal" style="--d:.06s">Juan Rafael</h1>
 <p class="lede reveal" style="--d:.12s">I build web apps, games and tools that real people use.</p>
 <div class="actions reveal" style="--d:.18s">
 <a class="btn btn-p" href="work.html">See my work <span class="arr">→</span></a>
@@ -222,17 +223,20 @@ def build_home():
 {cards}
 </div>
 </section>
-<section class="stats" aria-label="In numbers" data-stagger>
-<div class="stat reveal"><span class="num" data-count="5">5</span><span class="kicker">Projects shipped</span></div>
-<div class="stat reveal"><span class="num" data-count="1">1</span><span class="kicker">Year building, since Sept 2025</span></div>
-<div class="stat reveal"><span class="num" data-count="1">1</span><span class="kicker">Restaurant running my POS</span></div>
+<section class="section focus-sec">
+<div class="section-head reveal"><div><span class="kicker">02 — What I’m into</span><h2 class="h2">Always trying something new</h2></div></div>
+<div class="focus" data-stagger>
+<div class="stat reveal"><span class="idx">01</span><h3>Web development</h3><p>Sites and apps that feel quick, clear and simple to use.</p></div>
+<div class="stat reveal"><span class="idx">02</span><h3>Game development</h3><p>Worlds, mechanics and the small details that make them fun.</p></div>
+<div class="stat reveal"><span class="idx">03</span><h3>Whatever’s next</h3><p>Hardware, 3D and motion. If I haven’t tried it yet, it’s on the list.</p></div>
+</div>
 </section>
 <section class="cta reveal">
 <h2 class="h2">Have something that needs building?</h2>
 <a class="btn btn-p" href="contact.html">Get in touch <span class="arr">→</span></a>
 </section>
 </div>'''
-    page('index.html', 'Home', 'Uno is a student developer and maker who builds web apps, games and tools that real people use.', 'home', body)
+    page('index.html', 'Home', 'Juan Rafael (Uno) is an aspiring web and game developer who builds web apps, games and tools that real people use.', 'home', body)
 
 
 def build_work():
@@ -332,13 +336,13 @@ def build_about():
     total, months, weeks, today = heatmap()
     body = f'''<div class="wrap">
 <section class="about-top">
-<div class="portrait reveal" role="img" aria-label="Uno monogram"><span class="mono">U</span><span class="tag">Uno · Developer &amp; maker</span></div>
+<div class="portrait reveal" role="img" aria-label="うの — Uno in Japanese calligraphy"><img class="mono" src="assets/img/uno-ink-gold.webp" alt="" width="321" height="900"><span class="tag">Web Developer // Game Developer</span></div>
 <div class="about-copy">
 <div class="eyebrow reveal"><span>About</span></div>
 <h1 class="h1 reveal" style="--d:.06s">I like building things that leave the screen.</h1>
-<p class="body reveal" style="--d:.12s">I’m Juan Miguel L. Rafael, but online I go by Uno. I’m a first-year BSIT student in the Game Development track at the University of Perpetual Help System DALTA, and I’ve been building seriously since September 2025.</p>
-<p class="body reveal" style="--d:.16s">Most of what I make starts with someone running into a real problem: a restaurant paying too much for its till, classmates who can’t find each other between classes, a tiny printer that deserved a friendlier app.</p>
-<p class="body reveal" style="--d:.2s">I work across the stack, from web apps and databases to Roblox games, ESP32 firmware, and 3D and motion when a project needs it. I’d rather ship something small that people use than something big that stays a demo.</p>
+<p class="body reveal" style="--d:.12s">I’m Juan Rafael, though most people online know me as Uno. I’m a student who is still figuring out what I want to be great at, and I’m enjoying every step of finding out.</p>
+<p class="body reveal" style="--d:.16s">I learn best by making things. When something catches my eye, whether it’s a website, a game or a little gadget, I would rather try building it myself than just read about it.</p>
+<p class="body reveal" style="--d:.2s">Every project pushes me a bit further than the last. I’m always looking for something new to try, and new ways to expand my horizons.</p>
 <div class="actions reveal" style="--d:.24s"><a class="btn btn-p" href="work.html">See my work <span class="arr">→</span></a><a class="btn btn-s" href="contact.html">Get in touch</a></div>
 </div>
 </section>
@@ -366,7 +370,7 @@ def build_about():
 <div class="legend" aria-hidden="true"><span>Less</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>More</span></div></div>
 </section>
 </div>'''
-    page('about.html', 'About', 'About Uno: a first-year BSIT Game Development student who builds web apps, games, hardware and 3D work.', 'about', body)
+    page('about.html', 'About', 'About Juan Rafael (Uno): an aspiring web and game developer who loves trying new things.', 'about', body)
 
 
 def build_contact():

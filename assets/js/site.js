@@ -129,6 +129,27 @@
     });
   }
 
+  // Seismic field: a lens follows the cursor and reveals the traces underneath.
+  // Only transforms change per frame, and the loop stops once the lens settles.
+  var quake = document.querySelector('.quake');
+  if (quake && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var lens = quake.firstElementChild, field = lens.firstElementChild;
+    var tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty, raf = 0;
+    var ease = reduced ? 1 : 0.16;
+    var step = function () {
+      cx += (tx - cx) * ease; cy += (ty - cy) * ease;
+      lens.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+      field.style.transform = 'translate3d(' + (300 - cx) + 'px,' + (300 - cy) + 'px,0)';
+      raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.5 ? requestAnimationFrame(step) : 0;
+    };
+    addEventListener('pointermove', function (e) {
+      tx = e.clientX; ty = e.clientY;
+      quake.classList.add('on');
+      if (!raf) raf = requestAnimationFrame(step);
+    }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', function () { quake.classList.remove('on'); });
+  }
+
   // Page transitions where cross-document View Transitions aren't supported
   if (!('onpagereveal' in window) && !reduced) {
     root.classList.add('fallback-vt');
