@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocket Nova — Uno</title>
+<meta name="description" content="Pocket Nova: A pixel pet on a 5×5 LED matrix that doubles as a Bluetooth media remote and a TV remote.">
+<meta name="theme-color" content="#121212">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pocket Nova — Uno">
+<meta property="og:description" content="Pocket Nova: A pixel pet on a 5×5 LED matrix that doubles as a Bluetooth media remote and a TV remote.">
+<meta property="og:image" content="https://unorfl.github.io/portfolio/assets/img/og.jpg">
+<meta property="og:url" content="https://unorfl.github.io/portfolio/pocket-nova.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="shell">
+<aside class="side" aria-label="Site">
+<div class="side-in">
+<a class="logo" href="index.html" aria-label="Home">U</a>
+<nav class="nav" aria-label="Main"><ul>
+<li><a href="index.html">Home</a></li>
+<li><a class="on" href="work.html" aria-current="page">Work</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul></nav>
+<div class="side-foot">
+<ul class="soc"><li><a href="https://github.com/UnoRfl" aria-label="GitHub"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li></ul>
+<p class="copy">© 2026 Uno<br>All rights reserved</p>
+</div>
+</div>
+</aside>
+<main id="content">
+<div class="mtop">
+<a class="logo" href="index.html" aria-label="Home">U</a>
+<button type="button" class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-open-menu><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg></button>
+</div>
+<div class="media p-hero"><img src="assets/img/pocket-hero.webp" alt="Pocket Nova" loading="eager" fetchpriority="high" decoding="async"></div>
+<div class="wrap">
+<header class="p-head">
+<a class="link reveal" href="work.html">← All work</a>
+<h1 class="h1 reveal" style="--d:.06s">Pocket Nova</h1>
+<p class="lede reveal" style="--d:.12s">A pixel pet on a 5×5 LED matrix that doubles as a Bluetooth media remote and a TV remote.</p>
+</header>
+<dl class="p-meta reveal">
+<div><dt>Role</dt><dd>Firmware &amp; PC app</dd></div>
+<div><dt>Year</dt><dd>2026</dd></div>
+<div><dt>Tools</dt><dd>ESP32 · C++ · BLE · Python</dd></div>
+<div><dt>Link</dt><dd><a class="link always" href="https://github.com/UnoRfl/PocketNova">github.com/UnoRfl/PocketNova ↗</a></dd></div>
+</dl>
+<section class="p-sec reveal">
+<h2>01 — The problem</h2>
+<div><p class="big">One button, a 24 mm screen, and too many remotes.</p><p class="body">I wanted a keychain-sized device that was fun to carry and actually useful: something to skip a song, change the volume or turn off a TV without hunting for the right remote.</p></div>
+</section>
+<section class="p-sec reveal">
+<h2>02 — What I built</h2>
+<div><p class="body">Custom firmware for an ESP32 Atom Matrix. A pet called Nova lives on the home screen; hold the button for the menu, double-tap for the last app. It has 11 apps, three Bluetooth pairing slots and an infrared TV remote for 20 brands, with every code cross-checked against several public databases. A small PC panel opens by itself when it is plugged in.</p><ul class="p-list"><li><span>A</span>Pixel pet home screen and 11 one-button apps</li><li><span>B</span>Bluetooth media keys with three pairing slots</li><li><span>C</span>IR TV remote for 20 brands plus a find-my-TV sweep</li></ul></div>
+</section>
+<section class="shots-sec">
+<div class="shots-head reveal"><h2>03 — Screenshots</h2><span class="year">Click to enlarge</span></div>
+<div class="shots" data-stagger><button type="button" class="shot media reveal" data-full="assets/img/pocket-shot-1.webp" data-cap="Pocket-sized" aria-label="Open screenshot: Pocket-sized"><img src="assets/img/pocket-shot-1.webp" alt="" loading="lazy" decoding="async"></button><button type="button" class="shot media reveal" data-full="assets/img/pocket-shot-2.webp" data-cap="One button. Everything." aria-label="Open screenshot: One button. Everything."><img src="assets/img/pocket-shot-2.webp" alt="" loading="lazy" decoding="async"></button></div>
+</section>
+<section class="p-sec reveal">
+<h2>04 — Result</h2>
+<div><p class="big">A remote I actually carry.</p><p class="body">It survives restarts, reconnects on its own and updates from the PC panel.</p><p class="body"><span class="learned">What I learned:</span> a one-button interface forces you to cut every feature down to the essential gesture.</p></div>
+</section>
+<a class="next reveal" href="3d-motion.html">
+<span><span class="kicker">Next project</span><span class="name">3D &amp; Motion</span></span>
+<span class="arrow" aria-hidden="true">→</span>
+</a>
+</div>
+</main>
+</div>
+<div class="drawer" id="drawer" aria-hidden="true">
+<div class="drawer-top">
+<a class="logo" href="index.html" aria-label="Home" style="width:40px;height:40px;border-radius:12px;font-size:15px">U</a>
+<button type="button" class="menu-btn" aria-label="Close menu" data-close-menu><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+</div>
+<nav aria-label="Mobile"><ul>
+<li><a href="index.html">Home</a></li>
+<li><a class="on" href="work.html" aria-current="page">Work</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul></nav>
+<div class="side-foot">
+<ul class="soc"><li><a href="https://github.com/UnoRfl" aria-label="GitHub"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li></ul>
+<p class="copy">© 2026 Uno</p>
+</div>
+</div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot viewer" aria-hidden="true">
+<button type="button" class="lb-btn lb-close" aria-label="Close"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+<img src="" alt="">
+<div class="lb-bar"><button type="button" class="lb-btn" data-prev>← Prev</button><span data-lb-cap></span><button type="button" class="lb-btn" data-next>Next →</button></div>
+</div>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
