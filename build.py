@@ -138,7 +138,9 @@ def page(name, title, desc, active, body, after=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg">
 <meta property="og:url" content="{SITE}{'' if name == 'index.html' else name}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png?v={ver('favicon-32.png')}" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-64.png?v={ver('favicon-64.png')}" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v={ver('apple-touch-icon.png')}">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css?v={ver('assets/css/site.css')}">
 </head>
