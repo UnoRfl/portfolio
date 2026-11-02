@@ -223,12 +223,15 @@ def build_home():
     cards = '\n'.join(card(p, eager=True) for p in PROJECTS[:3])
     body = f'''<div class="wrap">
 <section class="hero">
+<figure class="hero-art reveal" style="--d:.04s"><img src="assets/img/hero-icarus.webp" alt="Black-and-white Icarus artwork with Japanese lettering and geometric details" width="941" height="1672" fetchpriority="high" decoding="async"></figure>
+<div class="hero-copy">
 <div class="eyebrow reveal"><span>Web Developer // Game Developer</span></div>
 <h1 class="display reveal" style="--d:.06s">Juan Rafael</h1>
 <p class="lede reveal" style="--d:.12s">I build web apps, games and tools that real people use.</p>
 <div class="actions reveal" style="--d:.18s">
 <a class="btn btn-p" href="work.html">See my work <span class="arr">→</span></a>
 <a class="btn btn-s" href="contact.html">Contact</a>
+</div>
 </div>
 </section>
 <section class="section">
