@@ -23,9 +23,9 @@
     }
     var moveHeroReveal = function (e) {
       if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
-      var rect = hero.getBoundingClientRect();
-      hero.style.setProperty('--sketch-x', (e.clientX - rect.left) + 'px');
-      hero.style.setProperty('--sketch-y', (e.clientY - rect.top - rect.height * 0.055) + 'px');
+      var sketchRect = hero.querySelector('.hero-sketch-red').getBoundingClientRect();
+      hero.style.setProperty('--sketch-x', (e.clientX - sketchRect.left) + 'px');
+      hero.style.setProperty('--sketch-y', (e.clientY - sketchRect.top) + 'px');
       if (heroCopy) {
         var copyRect = heroCopy.getBoundingClientRect();
         heroCopy.style.setProperty('--text-x', (e.clientX - copyRect.left) + 'px');

@@ -211,6 +211,10 @@ main { flex: 999 1 560px; min-width: 0; }
 .hero-art { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; margin: 0; overflow: hidden; background: #000; }
 .hero-art picture { position: absolute; inset: 5.5% 0; display: block; transition: opacity .2s ease; }
 .hero-art img { width: 100%; height: 100%; max-width: none; object-fit: contain; object-position: center; }
+@media (max-width: 860px) {
+  .hero { width: min(calc(100vw - 48px), 1600px); }
+  .hero-art img { object-position: right center; }
+}
 .hero-sketch-white { opacity: 1; }
 .hero-sketch-red { opacity: 0; -webkit-mask-image: radial-gradient(circle 120px at var(--sketch-x, 50%) var(--sketch-y, 50%), #000 0 68%, transparent 100%); mask-image: radial-gradient(circle 120px at var(--sketch-x, 50%) var(--sketch-y, 50%), #000 0 68%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
 .hero.is-red .hero-sketch-red { opacity: 1; }
@@ -415,11 +419,16 @@ main { flex: 999 1 560px; min-width: 0; }
   @view-transition { navigation: none; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 680px) {
   .hero-context { padding-top: 20px; margin-bottom: 16px; }
-  .hero { left: 50%; width: calc(100vw - 32px); height: 620px; padding: 32px 24px; border-radius: 16px; }
-  .hero-copy { width: 100%; }
-  .hero-art img { object-fit: contain; object-position: center; }
+  .hero { left: 50%; width: calc(100vw - 32px); height: auto; min-height: 680px; padding: 36px 22px 20px; border-radius: 16px; flex-direction: column; align-items: flex-start; }
+  .hero-copy { width: 100%; gap: 16px; }
+  .hero .display { font-size: clamp(38px, 11vw, 52px); line-height: 1; }
+  .hero .lede { max-width: 26ch; font-size: clamp(18px, 5vw, 21px); line-height: 1.4; }
+  .hero .actions { gap: 10px; padding-top: 4px; }
+  .hero .actions .btn { height: 46px; padding-inline: clamp(12px, 4vw, 18px); border-radius: 12px; font-size: 10px; letter-spacing: .12em; white-space: nowrap; }
+  .hero-art picture { inset: auto 0 0; height: 54%; }
+  .hero-art img { object-fit: contain; object-position: center bottom; }
   .section, .band { padding: 88px 0; }
   .p-head { padding-top: 56px; }
   .p-sec, .shots-sec { padding-top: 72px; }
