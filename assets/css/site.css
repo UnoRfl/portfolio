@@ -211,7 +211,8 @@ main { flex: 999 1 560px; min-width: 0; }
 .hero-art picture { position: absolute; inset: 0; display: block; }
 .hero-art img { width: 100%; height: 100%; max-width: none; object-fit: contain; object-position: right center; }
 .hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.72) 38%, rgba(0,0,0,.4) 68%, rgba(0,0,0,.14) 100%); }
-.hero-copy { position: relative; z-index: 1; width: min(100%, 780px); display: flex; flex-direction: column; gap: 24px; }
+.hero-copy { position: relative; z-index: 1; width: min(62%, 720px); display: flex; flex-direction: column; gap: 24px; }
+.hero .display { font-size: clamp(48px, 6vw, 84px); }
 .hero .lede { max-width: 22ch; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.35; letter-spacing: -.01em; }
 .actions { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 16px; }
 .section { padding: 120px 0; display: flex; flex-direction: column; gap: 56px; }
@@ -409,6 +410,8 @@ main { flex: 999 1 560px; min-width: 0; }
 
 @media (max-width: 600px) {
   .hero { left: 50%; width: calc(100vw - 32px); height: 620px; padding: 32px 24px; border-radius: 16px; }
+  .hero-copy { width: 100%; }
+  .hero::after { background: linear-gradient(180deg, rgba(0,0,0,.78), rgba(0,0,0,.45) 58%, rgba(0,0,0,.18)); }
   .hero-art img { object-fit: contain; object-position: center; }
   .section, .band { padding: 88px 0; }
   .p-head { padding-top: 56px; }
