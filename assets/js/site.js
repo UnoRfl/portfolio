@@ -5,6 +5,15 @@
   root.classList.remove('no-js');
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Crossfade the home sketch on pointer entry and restore it on exit.
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    hero.addEventListener('pointerenter', function (e) {
+      if (e.pointerType === 'mouse' || e.pointerType === 'pen') hero.classList.add('is-red');
+    });
+    hero.addEventListener('pointerleave', function () { hero.classList.remove('is-red'); });
+  }
+
   // Skeleton -> image: the shimmer stays until the real pixels have decoded
   document.querySelectorAll('.media img').forEach(function (img) {
     var box = img.closest('.media');

@@ -149,7 +149,7 @@ def page(name, title, desc, active, body, after=''):
 <link rel="icon" href="favicon-64.png?v={ver('favicon-64.png')}" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v={ver('apple-touch-icon.png')}">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/hero-glass.css?v={ver('assets/css/site.css')}">
+<link rel="stylesheet" href="assets/css/hero-sketch-hover.css?v={ver('assets/css/site.css')}">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
