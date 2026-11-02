@@ -13,6 +13,8 @@
       var rect = hero.getBoundingClientRect();
       hero.style.setProperty('--sketch-x', (e.clientX - rect.left) + 'px');
       hero.style.setProperty('--sketch-y', (e.clientY - rect.top - rect.height * 0.055) + 'px');
+      hero.style.setProperty('--pointer-x', (e.clientX - rect.left) + 'px');
+      hero.style.setProperty('--pointer-y', (e.clientY - rect.top) + 'px');
     };
     hero.addEventListener('pointerenter', function (e) {
       moveHeroReveal(e);
