@@ -224,7 +224,7 @@ def build_home():
     body = f'''<div class="wrap">
 <div class="hero-context">Home</div>
 <section class="hero">
-<figure class="hero-art reveal" style="--d:.04s"><picture><source media="(max-width: 600px)" srcset="assets/img/hero-icarus.png"><img src="assets/img/hero-icarus-landscape.png" alt="Full Icarus poster preserved on a landscape charcoal canvas" width="2972" height="1672" fetchpriority="high" decoding="async"></picture></figure>
+<figure class="hero-art reveal" style="--d:.04s"><picture><source media="(max-width: 600px)" srcset="assets/img/hero-icarus.png"><img src="assets/img/hero-icarus-landscape-centered.png" alt="Full Icarus poster preserved on a landscape charcoal canvas" width="2972" height="1672" fetchpriority="high" decoding="async"></picture></figure>
 <div class="hero-copy">
 <div class="eyebrow reveal"><span>Web Developer // Game Developer</span></div>
 <h1 class="display reveal" style="--d:.06s">Juan Rafael</h1>
