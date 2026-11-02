@@ -222,6 +222,7 @@ def cover_name(p):
 def build_home():
     cards = '\n'.join(card(p, eager=True) for p in PROJECTS[:3])
     body = f'''<div class="wrap">
+<div class="hero-context">Home</div>
 <section class="hero">
 <figure class="hero-art reveal" style="--d:.04s"><picture><source media="(max-width: 600px)" srcset="assets/img/hero-icarus.png"><img src="assets/img/hero-icarus-landscape.png" alt="Full Icarus poster preserved on a landscape charcoal canvas" width="2972" height="1672" fetchpriority="high" decoding="async"></picture></figure>
 <div class="hero-copy">
