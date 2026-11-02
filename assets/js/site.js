@@ -8,13 +8,29 @@
   // Reveal the crimson version of the home sketch only around the pointer.
   var hero = document.querySelector('.hero');
   if (hero) {
+    var heroCopy = hero.querySelector('.hero-copy');
+    var tintCopy = null;
+    if (heroCopy) {
+      tintCopy = heroCopy.cloneNode(true);
+      tintCopy.classList.add('hero-copy-tint');
+      tintCopy.setAttribute('aria-hidden', 'true');
+      var tintActions = tintCopy.querySelector('.actions');
+      if (tintActions) tintActions.remove();
+      tintCopy.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.remove('reveal', 'in');
+      });
+      heroCopy.appendChild(tintCopy);
+    }
     var moveHeroReveal = function (e) {
       if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
       var rect = hero.getBoundingClientRect();
       hero.style.setProperty('--sketch-x', (e.clientX - rect.left) + 'px');
       hero.style.setProperty('--sketch-y', (e.clientY - rect.top - rect.height * 0.055) + 'px');
-      hero.style.setProperty('--pointer-x', (e.clientX - rect.left) + 'px');
-      hero.style.setProperty('--pointer-y', (e.clientY - rect.top) + 'px');
+      if (heroCopy) {
+        var copyRect = heroCopy.getBoundingClientRect();
+        heroCopy.style.setProperty('--text-x', (e.clientX - copyRect.left) + 'px');
+        heroCopy.style.setProperty('--text-y', (e.clientY - copyRect.top) + 'px');
+      }
     };
     hero.addEventListener('pointerenter', function (e) {
       moveHeroReveal(e);

@@ -214,9 +214,11 @@ main { flex: 999 1 560px; min-width: 0; }
 .hero-sketch-white { opacity: 1; }
 .hero-sketch-red { opacity: 0; -webkit-mask-image: radial-gradient(circle 120px at var(--sketch-x, 50%) var(--sketch-y, 50%), #000 0 68%, transparent 100%); mask-image: radial-gradient(circle 120px at var(--sketch-x, 50%) var(--sketch-y, 50%), #000 0 68%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
 .hero.is-red .hero-sketch-red { opacity: 1; }
-.hero::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; background: radial-gradient(circle 120px at var(--pointer-x, 50%) var(--pointer-y, 50%), #e1062b 0 68%, transparent 100%); mix-blend-mode: multiply; transition: opacity .2s ease; }
-.hero.is-red::after { opacity: 1; }
 .hero-copy { position: relative; z-index: 1; width: min(62%, 720px); display: flex; flex-direction: column; gap: 24px; }
+.hero-copy-tint { position: absolute; inset: 0; z-index: 2; width: 100%; pointer-events: none; color: #e1062b; opacity: 0; mix-blend-mode: multiply; -webkit-mask-image: radial-gradient(circle 120px at var(--text-x, 50%) var(--text-y, 50%), #000 0 68%, transparent 100%); mask-image: radial-gradient(circle 120px at var(--text-x, 50%) var(--text-y, 50%), #000 0 68%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; transition: opacity .2s ease; }
+.hero-copy-tint > * { color: #e1062b !important; }
+.hero-copy-tint .eyebrow::before { background: #e1062b; }
+.hero.is-red .hero-copy-tint { opacity: 1; }
 .hero .display { font-size: clamp(48px, 6vw, 84px); }
 .hero .lede { max-width: 22ch; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.35; letter-spacing: -.01em; }
 .actions { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 16px; }
