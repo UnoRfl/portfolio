@@ -5,12 +5,20 @@
   root.classList.remove('no-js');
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Crossfade the home sketch on pointer entry and restore it on exit.
+  // Reveal the crimson version of the home sketch only around the pointer.
   var hero = document.querySelector('.hero');
   if (hero) {
+    var moveHeroReveal = function (e) {
+      if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+      var rect = hero.getBoundingClientRect();
+      hero.style.setProperty('--sketch-x', (e.clientX - rect.left) + 'px');
+      hero.style.setProperty('--sketch-y', (e.clientY - rect.top - rect.height * 0.055) + 'px');
+    };
     hero.addEventListener('pointerenter', function (e) {
+      moveHeroReveal(e);
       if (e.pointerType === 'mouse' || e.pointerType === 'pen') hero.classList.add('is-red');
     });
+    hero.addEventListener('pointermove', moveHeroReveal);
     hero.addEventListener('pointerleave', function () { hero.classList.remove('is-red'); });
   }
 
