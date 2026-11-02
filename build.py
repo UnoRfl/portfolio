@@ -223,7 +223,7 @@ def build_home():
     cards = '\n'.join(card(p, eager=True) for p in PROJECTS[:3])
     body = f'''<div class="wrap">
 <section class="hero">
-<figure class="hero-art reveal" style="--d:.04s"><img src="assets/img/hero-icarus.webp" alt="Black-and-white Icarus artwork with Japanese lettering and geometric details" width="941" height="1672" fetchpriority="high" decoding="async"></figure>
+<figure class="hero-art reveal" style="--d:.04s"><picture><source media="(max-width: 600px)" srcset="assets/img/hero-icarus.png"><img src="assets/img/hero-icarus-landscape.png" alt="Full Icarus poster preserved on a landscape charcoal canvas" width="2972" height="1672" fetchpriority="high" decoding="async"></picture></figure>
 <div class="hero-copy">
 <div class="eyebrow reveal"><span>Web Developer // Game Developer</span></div>
 <h1 class="display reveal" style="--d:.06s">Juan Rafael</h1>
