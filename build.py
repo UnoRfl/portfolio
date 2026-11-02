@@ -149,7 +149,7 @@ def page(name, title, desc, active, body, after=''):
 <link rel="icon" href="favicon-64.png?v={ver('favicon-64.png')}" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v={ver('apple-touch-icon.png')}">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/hero-sketch-hover.css?v={ver('assets/css/site.css')}">
+<link rel="stylesheet" href="assets/css/hero-sketch-final.css?v={ver('assets/css/site.css')}">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -225,8 +225,8 @@ def build_home():
 <div class="hero-context">Home</div>
 <section class="hero">
 <figure class="hero-art reveal" style="--d:.04s">
-<picture class="hero-sketch hero-sketch-white"><source media="(max-width: 600px)" srcset="assets/img/hero-icarus-white-v3.png"><img src="assets/img/hero-icarus-white-v3-landscape.png" alt="White Icarus line art on a black background" width="2972" height="1672" fetchpriority="high" decoding="async"></picture>
-<picture class="hero-sketch hero-sketch-red" aria-hidden="true"><source media="(max-width: 600px)" srcset="assets/img/hero-icarus-red-v3.png"><img src="assets/img/hero-icarus-red-v3-landscape.png" alt="" width="2972" height="1672" decoding="async"></picture>
+<picture class="hero-sketch hero-sketch-white"><source media="(max-width: 600px)" srcset="assets/img/hero-icarus-white-v4.png"><img src="assets/img/hero-icarus-white-v4-landscape.png" alt="White Icarus line art on a black background" width="2972" height="1672" fetchpriority="high" decoding="async"></picture>
+<picture class="hero-sketch hero-sketch-red" aria-hidden="true"><source media="(max-width: 600px)" srcset="assets/img/hero-icarus-red-v4.png"><img src="assets/img/hero-icarus-red-v4-landscape.png" alt="" width="2972" height="1672" decoding="async"></picture>
 </figure>
 <div class="hero-copy">
 <div class="eyebrow reveal"><span>Web Developer // Game Developer</span></div>
