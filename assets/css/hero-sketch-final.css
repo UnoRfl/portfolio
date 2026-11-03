@@ -381,6 +381,8 @@ main { flex: 999 1 560px; min-width: 0; }
 
 /* ---------- contact ---------- */
 .contact { padding: clamp(96px, 14vh, 152px) 0 144px; display: flex; flex-wrap: wrap; gap: 80px 96px; }
+.contact-art { display: none; }
+.contact-art img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; filter: invert(1); }
 .contact > section { flex: 1 1 400px; display: flex; flex-direction: column; gap: 32px; }
 .contact .body { max-width: 40ch; font-size: 18px; line-height: 1.7; }
 .mail { align-self: flex-start; font-size: clamp(20px, 2vw, 26px); font-weight: 400; letter-spacing: -.01em; padding-bottom: 6px; background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 100% 1px; transition: color .3s; }
@@ -406,6 +408,33 @@ main { flex: 999 1 560px; min-width: 0; }
 .field input::placeholder, .field textarea::placeholder { color: #7a7a7a; }
 .form .btn { align-self: flex-start; padding: 0 40px; }
 .form-note { font-size: 13px; line-height: 1.6; color: var(--dim); min-height: 21px; }
+
+@media (min-width: 1280px) {
+  .contact {
+    display: grid; grid-template-columns: minmax(128px, .72fr) minmax(0, 1fr) minmax(0, 1fr) minmax(128px, .72fr);
+    align-items: center; gap: clamp(12px, 1.5vw, 24px);
+  }
+  .contact-art { display: block; position: relative; width: 100%; aspect-ratio: 0.514; margin: 0; overflow: visible; }
+  .contact-art--spartan { grid-column: 1; transform: translateY(-28px); }
+  .contact-art--archer { grid-column: 4; transform: translateY(38px); }
+  .contact > section { grid-column: 2; min-width: 0; flex: initial; gap: 26px; }
+  .contact > form { grid-column: 3; min-width: 0; flex: initial; gap: 26px; padding: 32px 22px; }
+  .contact > form .btn { padding-inline: 28px; }
+  .contact .h1 { font-size: clamp(36px, 3.2vw, 54px); }
+  .contact .mail { font-size: clamp(16px, 1.25vw, 20px); overflow-wrap: anywhere; }
+}
+
+@media (max-width: 1279px) {
+  .contact { position: relative; isolation: isolate; }
+  .contact-art {
+    display: block; position: absolute; z-index: -1; width: clamp(144px, 36vw, 220px); aspect-ratio: 0.514;
+    margin: 0; opacity: .22; pointer-events: none;
+  }
+  .contact-art--spartan { top: 52px; left: -16px; transform: translateY(-8px) rotate(-3deg); }
+  .contact-art--archer { top: 190px; right: -30px; opacity: .16; transform: translateY(24px) rotate(3deg); }
+  .contact > section, .contact > form { position: relative; z-index: 1; }
+  .contact > form { background: linear-gradient(150deg, rgba(38, 38, 38, .84), rgba(29, 29, 29, .84) 55%, rgba(25, 25, 25, .84)); }
+}
 
 /* ---------- topographic map (pointer devices only) ---------- */
 .shell { position: relative; z-index: 1; }
@@ -473,3 +502,4 @@ main { flex: 999 1 560px; min-width: 0; }
 .hero-art .glitch--hero-black { z-index: 4; background: #030304; box-shadow: inset 0 1px 0 rgba(255, 113, 128, .8), inset 0 -1px 0 rgba(184, 20, 49, .85); }
 .hero-art .glitch--hero-deep { z-index: 3; filter: brightness(.58) saturate(1.35) drop-shadow(0 0 4px rgba(184, 20, 49, .55)); }
 .portrait .glitch { inset: 0; background: url('../img/gods-plan-profile-lines.png') center / contain no-repeat, var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") fixed; }
+.contact-art .glitch { inset: 0; background: var(--contact-art) center / contain no-repeat; filter: invert(1); }
