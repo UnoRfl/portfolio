@@ -170,7 +170,27 @@
     placeArt();
   }
   if (portrait) glitch(portrait);
-  contactArt.forEach(function (art) { glitch(art); });
+  if (contactArt.length) {
+    var contactHost = contactArt[0].parentElement;
+    var contactForm = contactHost.querySelector('form');
+    var contactWide = matchMedia('(min-width: 1280px)');
+    var placeContactArt = function () {
+      if (!contactForm || !contactWide.matches) {
+        contactArt.forEach(function (art) { art.style.top = ''; art.style.height = ''; });
+        return;
+      }
+      var formRect = contactForm.getBoundingClientRect();
+      var hostRect = contactHost.getBoundingClientRect();
+      contactArt.forEach(function (art) {
+        art.style.height = Math.min(300, art.getBoundingClientRect().width * 2.45) + 'px';
+        art.style.top = (formRect.top - hostRect.top + (formRect.height - art.offsetHeight) / 2) + 'px';
+      });
+    };
+    contactArt.forEach(function (art) { glitch(art); });
+    placeContactArt();
+    addEventListener('resize', placeContactArt);
+    if ('ResizeObserver' in window && contactForm) new ResizeObserver(placeContactArt).observe(contactForm);
+  }
 
   // Skeleton -> image: the shimmer stays until the real pixels have decoded
   document.querySelectorAll('.media img').forEach(function (img) {
