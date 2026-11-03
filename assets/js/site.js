@@ -199,7 +199,8 @@
         art.style.height = Math.min(780, gapWidth * 2.82) + 'px';
         art.style.left = isLeft ? (formRect.left - formGap - artWidth - hostRect.left) + 'px' : '';
         art.style.right = isLeft ? '' : (hostRect.right - formRect.right - formGap - artWidth) + 'px';
-        art.style.top = (formRect.top - hostRect.top + (formRect.height - art.offsetHeight) / 2) + 'px';
+        var verticalOffset = isLeft ? -24 : 0;
+        art.style.top = (formRect.top - hostRect.top + (formRect.height - art.offsetHeight) / 2 + verticalOffset) + 'px';
       });
     };
     contactArt.forEach(function (art) { glitch(art); });
