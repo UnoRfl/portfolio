@@ -330,6 +330,14 @@ main { flex: 999 1 560px; min-width: 0; }
 .about-copy { flex: 1 1 420px; max-width: 62ch; display: flex; flex-direction: column; gap: 24px; }
 .about-copy .h1 { font-size: clamp(40px, 4.6vw, 64px); line-height: 1.05; letter-spacing: -.03em; }
 .about-copy .actions { padding-top: 8px; }
+@media (min-width: 1200px) {
+  .about-top { width: calc(100% + 112px); margin-left: -56px; padding: 10vh 0; gap: 56px 64px; align-items: center; flex-wrap: nowrap; }
+  .portrait { flex: 0 1 auto; width: min(64vh, calc(100% - 484px)); height: auto; }
+  .about-copy { flex: 0 1 420px; min-width: 0; }
+}
+@media (max-width: 860px) {
+  .portrait { width: auto; height: auto; }
+}
 .band { padding: 120px 0; border-top: 1px solid var(--line); }
 .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 48px 32px; }
 .skill { display: flex; flex-direction: column; gap: 16px; padding-top: 24px; border-top: 1px solid var(--accent); }
