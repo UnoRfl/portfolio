@@ -410,13 +410,17 @@ main { flex: 999 1 560px; min-width: 0; }
 .form-note { font-size: 13px; line-height: 1.6; color: var(--dim); min-height: 21px; }
 
 @media (min-width: 1280px) {
-  .contact { --contact-side-gap: calc(var(--gutter) + max(0px, calc(50vw - 684px))); }
+  .contact {
+    --contact-side-gap: calc(var(--gutter) + max(0px, calc(50vw - 684px)));
+    --contact-art-pad: clamp(4px, .6vw, 10px);
+  }
   .contact-art {
-    display: block; position: absolute; z-index: 0; width: min(300px, var(--contact-side-gap)); height: 300px;
+    display: block; position: absolute; z-index: 0;
+    width: min(300px, calc(var(--contact-side-gap) - var(--contact-art-pad) - var(--contact-art-pad))); height: 300px;
     margin: 0; overflow: hidden; opacity: 1; pointer-events: none;
   }
-  .contact-art--spartan { left: calc(0px - var(--contact-side-gap)); }
-  .contact-art--archer { right: calc(0px - var(--contact-side-gap)); }
+  .contact-art--spartan { left: calc(0px - var(--contact-side-gap) + var(--contact-art-pad)); }
+  .contact-art--archer { right: calc(0px - var(--contact-side-gap) + var(--contact-art-pad)); }
   .contact > section, .contact > form { position: relative; z-index: 1; }
 }
 

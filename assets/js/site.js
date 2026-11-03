@@ -182,7 +182,9 @@
       var formRect = contactForm.getBoundingClientRect();
       var hostRect = contactHost.getBoundingClientRect();
       contactArt.forEach(function (art) {
-        art.style.height = Math.min(520, art.getBoundingClientRect().width * 1.88) + 'px';
+        var artPad = Math.min(10, Math.max(4, document.documentElement.clientWidth * 0.006));
+        var sideGap = art.getBoundingClientRect().width + (artPad * 2);
+        art.style.height = Math.min(780, sideGap * 2.82) + 'px';
         art.style.top = (formRect.top - hostRect.top + (formRect.height - art.offsetHeight) / 2) + 'px';
       });
     };
