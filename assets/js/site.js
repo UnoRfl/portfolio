@@ -173,18 +173,32 @@
   if (contactArt.length) {
     var contactHost = contactArt[0].parentElement;
     var contactForm = contactHost.querySelector('form');
+    var contactMain = contactHost.closest('main');
     var contactWide = matchMedia('(min-width: 1280px)');
     var placeContactArt = function () {
-      if (!contactForm || !contactWide.matches) {
-        contactArt.forEach(function (art) { art.style.top = ''; art.style.height = ''; });
+      if (!contactForm || !contactMain || !contactWide.matches) {
+        contactArt.forEach(function (art) {
+          art.style.top = '';
+          art.style.height = '';
+          art.style.width = '';
+          art.style.left = '';
+          art.style.right = '';
+        });
         return;
       }
       var formRect = contactForm.getBoundingClientRect();
       var hostRect = contactHost.getBoundingClientRect();
+      var mainRect = contactMain.getBoundingClientRect();
+      var artPad = Math.min(10, Math.max(4, document.documentElement.clientWidth * 0.006));
       contactArt.forEach(function (art) {
-        var artPad = Math.min(10, Math.max(4, document.documentElement.clientWidth * 0.006));
-        var sideGap = art.getBoundingClientRect().width + (artPad * 2);
-        art.style.height = Math.min(780, sideGap * 2.82) + 'px';
+        var isLeft = art.classList.contains('contact-art--spartan');
+        var gapWidth = isLeft ? formRect.left - mainRect.left : mainRect.right - formRect.right;
+        var artWidth = Math.max(0, Math.min(300, gapWidth - (artPad * 2)));
+        var gapCenter = isLeft ? (mainRect.left + formRect.left) / 2 : (formRect.right + mainRect.right) / 2;
+        art.style.width = artWidth + 'px';
+        art.style.height = Math.min(780, gapWidth * 2.82) + 'px';
+        art.style.left = isLeft ? (gapCenter - artWidth / 2 - hostRect.left) + 'px' : '';
+        art.style.right = isLeft ? '' : (hostRect.right - gapCenter - artWidth / 2) + 'px';
         art.style.top = (formRect.top - hostRect.top + (formRect.height - art.offsetHeight) / 2) + 'px';
       });
     };
