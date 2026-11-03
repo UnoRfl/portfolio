@@ -454,58 +454,8 @@ main { flex: 999 1 560px; min-width: 0; }
   .lb-bar { gap: 12px; }
 }
 
-/* phones: no pointer to follow, so the crimson sketch and the About inversion
-   shimmer on their own (three drifting glows on different clocks); site.js adds
-   the randomly angled strips that jump out of register (.glitch) */
-@property --g1x { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
-@property --g1y { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
-@property --g1r { syntax: '<length>'; inherits: false; initial-value: 0px; }
-@property --g2x { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
-@property --g2y { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
-@property --g2r { syntax: '<length>'; inherits: false; initial-value: 0px; }
-@property --g3x { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
-@property --g3y { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
-@property --g3r { syntax: '<length>'; inherits: false; initial-value: 0px; }
-@keyframes glowA {
-  0% { --g1x: 34%; --g1y: 30%; --g1r: 0px; }
-  14% { --g1r: 96px; }
-  30% { --g1x: 52%; --g1y: 42%; --g1r: 0px; }
-  52% { --g1x: 62%; --g1y: 70%; --g1r: 0px; }
-  66% { --g1r: 80px; }
-  80%, 100% { --g1x: 44%; --g1y: 58%; --g1r: 0px; }
-}
-@keyframes glowB {
-  0%, 22% { --g2x: 66%; --g2y: 22%; --g2r: 0px; }
-  38% { --g2r: 70px; }
-  50% { --g2x: 58%; --g2y: 34%; --g2r: 0px; }
-  72% { --g2x: 30%; --g2y: 82%; --g2r: 0px; }
-  84% { --g2r: 110px; }
-  100% { --g2x: 46%; --g2y: 64%; --g2r: 0px; }
-}
-@keyframes glowC {
-  0% { --g3x: 50%; --g3y: 50%; --g3r: 0px; }
-  10% { --g3r: 54px; }
-  18% { --g3r: 0px; }
-  44% { --g3x: 72%; --g3y: 46%; --g3r: 0px; }
-  52% { --g3r: 64px; }
-  60%, 100% { --g3x: 40%; --g3y: 16%; --g3r: 0px; }
-}
-.glitch { display: none; }
-@media (max-width: 680px), (hover: none) {
-  .hero-sketch-red, .portrait-invert {
-    opacity: 1;
-    --shimmer: radial-gradient(circle var(--g1r) at var(--g1x) var(--g1y), #000 0 55%, transparent 100%),
-               radial-gradient(circle var(--g2r) at var(--g2x) var(--g2y), #000 0 55%, transparent 100%),
-               radial-gradient(circle var(--g3r) at var(--g3x) var(--g3y), #000 0 55%, transparent 100%);
-    -webkit-mask-image: var(--shimmer); mask-image: var(--shimmer);
-    animation: glowA 9s ease-in-out infinite, glowB 13s ease-in-out -4s infinite, glowC 7s ease-in-out -2s infinite;
-  }
-  .portrait-invert { animation-duration: 10s, 14s, 8s; }
-  .glitch { display: block; position: absolute; z-index: 3; pointer-events: none; opacity: 0; }
-  .hero-art .glitch { background: url('../img/hero-icarus-red-v5.png') center bottom / contain no-repeat; }
-  .portrait .glitch { inset: 0; background: url('../img/gods-plan-profile.png') center / contain no-repeat, #fff; filter: invert(1); }
-}
-@media (max-width: 680px) and (prefers-reduced-motion: reduce), (hover: none) and (prefers-reduced-motion: reduce) {
-  .hero-sketch-red { animation-duration: 9s, 13s, 7s !important; animation-iteration-count: infinite !important; }
-  .portrait-invert { animation-duration: 10s, 14s, 8s !important; animation-iteration-count: infinite !important; }
-}
+/* strips of the crimson sketch (home) and of the inverted artwork (About) that
+   site.js cuts at random angles and knocks out of register at random times */
+.glitch { position: absolute; z-index: 3; pointer-events: none; opacity: 0; }
+.hero-art .glitch { background: url('../img/hero-icarus-red-v5-landscape.png') center bottom / contain no-repeat; }
+.portrait .glitch { inset: 0; background: url('../img/gods-plan-profile.png') center / contain no-repeat, #fff; filter: invert(1); }

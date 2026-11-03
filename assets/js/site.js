@@ -114,9 +114,8 @@
     redImg.addEventListener('load', placeArt);
   }
 
-  // Phones and tablets have no pointer, so strips of the crimson sketch (home) and of the
-  // inverted artwork (About) glitch in on their own: random angle, size, offset and timing.
-  var narrow = matchMedia('(max-width: 680px), (hover: none)');
+  // Strips of the crimson sketch (home) and of the inverted artwork (About) glitch in
+  // on their own: random angle, size, offset and timing.
   var glitch = function (host) {
     var layers = [0, 1, 2].map(function () {
       var l = document.createElement('span');
@@ -150,7 +149,7 @@
       l.style.opacity = 1;
     };
     var burst = function () {
-      if (!narrow.matches || !onScreen()) { timer = setTimeout(burst, 1200); return; }
+      if (!onScreen()) { timer = setTimeout(burst, 1200); return; }
       var n = Math.random() < 0.55 ? 1 : Math.random() < 0.7 ? 2 : 3;
       var steps = 1 + Math.floor(rand(0, 4));
       var step = function (i) {
