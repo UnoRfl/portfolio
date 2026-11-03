@@ -313,8 +313,6 @@ main { flex: 999 1 560px; min-width: 0; }
 .portrait {
   flex: 0 1 390px; aspect-ratio: 4 / 5; margin: 0; border-radius: 24px; position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  background: #fff;
-  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, .95);
   transition: transform .6s var(--ease);
 }
 .portrait:hover { transform: translateY(-6px); }
@@ -454,8 +452,17 @@ main { flex: 999 1 560px; min-width: 0; }
   .lb-bar { gap: 12px; }
 }
 
-/* strips of the crimson sketch (home) and of the inverted artwork (About) that
-   site.js cuts at random angles and knocks out of register at random times */
+/* strips of the crimson sketch (home) and of the About line art that site.js cuts
+   at random angles and knocks out of register at random times; the About strips
+   carry the page background so the lines under them drop out instead of doubling */
 .glitch { position: absolute; z-index: 3; pointer-events: none; opacity: 0; }
 .hero-art .glitch { background: url('../img/hero-icarus-red-v5-landscape.png') center bottom / contain no-repeat; }
-.portrait .glitch { inset: 0; background: url('../img/gods-plan-profile.png') center / contain no-repeat, #fff; filter: invert(1); }
+.portrait .glitch { inset: 0; background: url('../img/gods-plan-profile-lines.png') center / contain no-repeat, var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") fixed; }
+@font-face {
+  font-family: 'Unorfl Tag';
+  src: url('../fonts/unifraktur-tag.woff2') format('woff2');
+  font-display: block;
+}
+.glitch-tag { position: absolute; z-index: 4; pointer-events: none; opacity: 0; font-family: 'Unorfl Tag', serif; line-height: 1; white-space: nowrap; }
+.hero-art .glitch-tag { color: #e1062b; text-shadow: 3px 0 rgba(255, 255, 255, .5); }
+.portrait .glitch-tag { color: #ededed; text-shadow: -3px 0 rgba(237, 237, 237, .3); }

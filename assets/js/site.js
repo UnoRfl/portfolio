@@ -114,9 +114,12 @@
     redImg.addEventListener('load', placeArt);
   }
 
-  // Strips of the crimson sketch (home) and of the inverted artwork (About) glitch in
+  // Strips of the crimson sketch (home) and of the About line art glitch in
   // on their own: random angle, size, offset and timing.
-  var glitch = function (host) {
+  // Now and then a burst also flashes a secret "unorfl" tag over the sketch.
+  // art: the image the strips are cut from, its vertical alignment inside the box,
+  // and the horizontal share of it the drawing covers (the tag stays on the drawing).
+  var glitch = function (host, art) {
     var layers = [0, 1, 2].map(function () {
       var l = document.createElement('span');
       l.className = 'glitch';
@@ -124,8 +127,12 @@
       host.appendChild(l);
       return l;
     });
+    var tag = document.createElement('span');
+    tag.className = 'glitch-tag';
+    tag.setAttribute('aria-hidden', 'true');
+    tag.textContent = 'unorfl';
+    host.appendChild(tag);
     var rand = function (a, b) { return a + Math.random() * (b - a); };
-    var timer = 0;
     var onScreen = function () {
       var r = host.getBoundingClientRect();
       return !document.hidden && r.bottom > 0 && r.top < innerHeight;
@@ -148,24 +155,57 @@
       l.style.transform = 'translate(' + rand(-18, 18).toFixed(1) + 'px,' + rand(-4, 4).toFixed(1) + 'px)';
       l.style.opacity = 1;
     };
+    // where the drawing actually sits inside the strip box (contain-fitted image)
+    var drawing = function () {
+      var l = layers[0], w = l.offsetWidth, h = l.offsetHeight;
+      var img = art.img(), k = Math.min(w / img.naturalWidth, h / img.naturalHeight);
+      var dw = img.naturalWidth * k, dh = img.naturalHeight * k;
+      var f = art.fig(img), x = l.offsetLeft + (w - dw) / 2;
+      var y = l.offsetTop + (art.bottom ? h - dh : (h - dh) / 2);
+      return { x: x + dw * f[0], y: y, w: dw * (f[1] - f[0]), h: dh };
+    };
+    var place = function (d, first) {
+      if (first) {
+        tag.style.fontSize = (d.w * rand(0.17, 0.24)).toFixed(1) + 'px';
+        tag.style.left = (d.x + d.w * rand(0.35, 0.65)).toFixed(1) + 'px';
+        tag.style.top = (d.y + d.h * rand(0.18, 0.82)).toFixed(1) + 'px';
+        tag.dataset.rot = rand(-14, 14).toFixed(1);
+      }
+      var top = rand(0, 40), bottom = Math.random() < 0.4 ? rand(0, 40) : 0;
+      tag.style.webkitClipPath = tag.style.clipPath = 'inset(' + top.toFixed(0) + '% -20% ' + bottom.toFixed(0) + '% -20%)';
+      tag.style.transform = 'translate(-50%,-50%) translateX(' + rand(-10, 10).toFixed(1) + 'px) rotate(' + tag.dataset.rot + 'deg)';
+      tag.style.opacity = 1;
+    };
     var burst = function () {
-      if (!onScreen()) { timer = setTimeout(burst, 1200); return; }
+      if (!onScreen()) { setTimeout(burst, 1200); return; }
       var n = Math.random() < 0.55 ? 1 : Math.random() < 0.7 ? 2 : 3;
       var steps = 1 + Math.floor(rand(0, 4));
+      var d = art.img().naturalWidth && Math.random() < 0.16 ? drawing() : null;
       var step = function (i) {
         layers.forEach(function (l, k) { if (k < n && Math.random() < 0.85) cut(l); else l.style.opacity = 0; });
-        if (i < steps) timer = setTimeout(step, rand(50, 160), i + 1);
-        else timer = setTimeout(function () {
-          layers.forEach(function (l) { l.style.opacity = 0; });
-          timer = setTimeout(burst, rand(350, 2600));
-        }, rand(80, 380));
+        if (d) place(d, i === 1);
+        if (i < steps) setTimeout(step, rand(50, 160), i + 1);
+        else setTimeout(function () {
+          layers.concat(tag).forEach(function (l) { l.style.opacity = 0; });
+          setTimeout(burst, rand(350, 2600));
+        }, rand(80, 380) + (d ? 420 : 0));
       };
       step(1);
     };
-    timer = setTimeout(burst, rand(200, 900));
+    setTimeout(burst, rand(200, 900));
   };
-  if (heroArt) { glitch(heroArt); placeArt(); }
-  if (portrait) glitch(portrait);
+  if (heroArt) {
+    glitch(heroArt, {
+      img: function () { return heroArt.querySelector('.hero-sketch-red img'); },
+      fig: function (img) { return img.naturalWidth > img.naturalHeight ? [0.345, 0.655] : [0.02, 0.98]; },
+      bottom: true
+    });
+    placeArt();
+  }
+  if (portrait) glitch(portrait, {
+    img: function () { return portrait.querySelector('.portrait-art'); },
+    fig: function () { return [0.05, 0.95]; }
+  });
 
   // Skeleton -> image: the shimmer stays until the real pixels have decoded
   document.querySelectorAll('.media img').forEach(function (img) {
