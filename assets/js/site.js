@@ -57,6 +57,115 @@
     portrait.addEventListener('pointerleave', function () { portrait.classList.remove('is-inverted'); });
   }
 
+  // Keep the home sketch clear of the hero text: centered when there is room,
+  // slid right (up to a margin from the border) when the copy would touch it,
+  // and shrunk only once it cannot slide any further.
+  var heroArt = document.querySelector('.hero-art');
+  var wide = matchMedia('(min-width: 681px)');
+  if (hero && heroArt) {
+    var artPics = heroArt.querySelectorAll('picture');
+    var artImg = heroArt.querySelector('.hero-sketch-white img');
+    var placeArt = function () {
+      if (!wide.matches || !artImg.naturalWidth) {
+        artPics.forEach(function (p) { p.style.inset = p.style.width = p.style.height = ''; });
+        return;
+      }
+      var box = heroArt.getBoundingClientRect();
+      var W = box.width, H = box.height;
+      var ar = artImg.naturalWidth / artImg.naturalHeight;
+      // horizontal share of the image the figure covers, measured from the artwork
+      var f0 = ar > 1 ? 0.345 : 0.02, f1 = ar > 1 ? 0.655 : 0.98;
+      var textRight = 0;
+      var walker = document.createTreeWalker(heroCopy, NodeFilter.SHOW_TEXT);
+      var range = document.createRange();
+      var node;
+      while ((node = walker.nextNode())) {
+        if (!node.textContent.trim() || node.parentElement.closest('.hero-copy-tint')) continue;
+        range.selectNodeContents(node);
+        Array.prototype.forEach.call(range.getClientRects(), function (r) { textRight = Math.max(textRight, r.right - box.left); });
+      }
+      heroCopy.querySelectorAll('.btn').forEach(function (b) {
+        if (!b.closest('.hero-copy-tint')) textRight = Math.max(textRight, b.getBoundingClientRect().right - box.left);
+      });
+      var minLeft = textRight + Math.max(24, W * 0.03);
+      var maxRight = W - Math.max(32, W * 0.04);
+      // full height first; only the black margins of the image may run past the box
+      var dw = H * 0.89 * ar;
+      var fw = dw * (f1 - f0);
+      var figLeft = Math.max(W / 2 - fw / 2, minLeft);
+      if (figLeft + fw > maxRight) {
+        if (fw <= maxRight - minLeft) figLeft = maxRight - fw;
+        else { fw = Math.max(maxRight - minLeft, 0); figLeft = minLeft; dw = fw / (f1 - f0); }
+      }
+      var dh = dw / ar;
+      var inset = ((H - dh) / 2) + 'px auto auto ' + (figLeft - dw * f0) + 'px';
+      artPics.forEach(function (p) { p.style.inset = inset; p.style.width = dw + 'px'; p.style.height = dh + 'px'; });
+    };
+    // runs again whenever the picture swaps between its portrait and landscape files
+    artImg.addEventListener('load', placeArt);
+    if (artImg.complete) placeArt();
+    if (document.fonts) document.fonts.ready.then(placeArt);
+    if ('ResizeObserver' in window) new ResizeObserver(placeArt).observe(hero);
+    else addEventListener('resize', placeArt);
+    wide.addEventListener('change', placeArt);
+  }
+
+  // Phones have no pointer, so strips of the crimson sketch (home) and of the
+  // inverted artwork (About) glitch in on their own: random angle, size, offset and timing.
+  var narrow = matchMedia('(max-width: 680px)');
+  var glitch = function (host) {
+    var layers = [0, 1, 2].map(function () {
+      var l = document.createElement('span');
+      l.className = 'glitch';
+      l.setAttribute('aria-hidden', 'true');
+      host.appendChild(l);
+      return l;
+    });
+    var rand = function (a, b) { return a + Math.random() * (b - a); };
+    var timer = 0;
+    var onScreen = function () {
+      var r = host.getBoundingClientRect();
+      return !document.hidden && r.bottom > 0 && r.top < innerHeight;
+    };
+    var cut = function (l) {
+      var w = l.offsetWidth, h = l.offsetHeight;
+      var shape;
+      if (Math.random() < 0.7) {
+        // a band through a random point at a random angle
+        var a = rand(-50, 50) * Math.PI / 180, t = rand(2, 34);
+        var px = rand(0.15, 0.85) * w, py = rand(0.08, 0.92) * h, L = w + h;
+        var dx = Math.cos(a) * L, dy = Math.sin(a) * L, nx = -Math.sin(a) * t, ny = Math.cos(a) * t;
+        shape = [[px + dx + nx, py + dy + ny], [px - dx + nx, py - dy + ny], [px - dx - nx, py - dy - ny], [px + dx - nx, py + dy - ny]];
+      } else {
+        // a loose block
+        var bx = rand(0, 0.7) * w, by = rand(0, 0.85) * h, bw = rand(0.2, 0.6) * w, bh = rand(6, 70);
+        shape = [[bx, by], [bx + bw, by], [bx + bw, by + bh], [bx, by + bh]];
+      }
+      l.style.clipPath = 'polygon(' + shape.map(function (pt) { return pt[0].toFixed(1) + 'px ' + pt[1].toFixed(1) + 'px'; }).join(',') + ')';
+      l.style.transform = 'translate(' + rand(-18, 18).toFixed(1) + 'px,' + rand(-4, 4).toFixed(1) + 'px)';
+      l.style.opacity = 1;
+    };
+    var burst = function () {
+      if (!narrow.matches || !onScreen()) { timer = setTimeout(burst, 1200); return; }
+      var n = Math.random() < 0.55 ? 1 : Math.random() < 0.7 ? 2 : 3;
+      var steps = 1 + Math.floor(rand(0, 4));
+      var step = function (i) {
+        layers.forEach(function (l, k) { if (k < n && Math.random() < 0.85) cut(l); else l.style.opacity = 0; });
+        if (i < steps) timer = setTimeout(step, rand(50, 160), i + 1);
+        else timer = setTimeout(function () {
+          layers.forEach(function (l) { l.style.opacity = 0; });
+          timer = setTimeout(burst, rand(350, 2600));
+        }, rand(80, 380));
+      };
+      step(1);
+    };
+    timer = setTimeout(burst, rand(200, 900));
+  };
+  if (!reduced) {
+    if (heroArt) glitch(heroArt);
+    if (portrait) glitch(portrait);
+  }
+
   // Skeleton -> image: the shimmer stays until the real pixels have decoded
   document.querySelectorAll('.media img').forEach(function (img) {
     var box = img.closest('.media');
