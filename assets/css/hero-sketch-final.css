@@ -410,14 +410,18 @@ main { flex: 999 1 560px; min-width: 0; }
 .form-note { font-size: 13px; line-height: 1.6; color: var(--dim); min-height: 21px; }
 
 @media (min-width: 1280px) {
-  .contact { position: relative; isolation: isolate; gap: 64px; }
-  .contact-art {
-    display: block; position: absolute; z-index: 0; width: clamp(144px, 13vw, 180px); aspect-ratio: 0.514;
-    margin: 0; overflow: visible; opacity: .16; pointer-events: none;
+  .contact {
+    display: grid; grid-template-columns: minmax(128px, .72fr) minmax(0, 1fr) minmax(0, 1fr) minmax(128px, .72fr);
+    align-items: center; gap: clamp(12px, 1.5vw, 24px);
   }
-  .contact-art--spartan { left: calc(0px - var(--gutter)); top: 0; transform: translateY(-28px); }
-  .contact-art--archer { right: calc(0px - var(--gutter)); top: 92px; transform: translateY(38px); }
-  .contact > section, .contact > form { position: relative; z-index: 1; }
+  .contact-art { display: block; position: relative; width: 100%; aspect-ratio: 0.514; margin: 0; overflow: visible; }
+  .contact-art--spartan { grid-column: 1; transform: translateY(-28px); }
+  .contact-art--archer { grid-column: 4; transform: translateY(38px); }
+  .contact > section { grid-column: 2; min-width: 0; flex: initial; gap: 26px; }
+  .contact > form { grid-column: 3; min-width: 0; flex: initial; gap: 26px; padding: 32px 22px; }
+  .contact > form .btn { padding-inline: 28px; }
+  .contact .h1 { font-size: clamp(36px, 3.2vw, 54px); }
+  .contact .mail { font-size: clamp(16px, 1.25vw, 20px); overflow-wrap: anywhere; }
 }
 
 @media (max-width: 1279px) {
