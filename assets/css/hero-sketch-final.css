@@ -415,7 +415,7 @@ main { flex: 999 1 560px; min-width: 0; }
   mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, .55) 45%, transparent 100%);
   will-change: transform; contain: strict;
 }
-.topo-field { position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; opacity: .32; background: url('../img/topo.svg') center / cover no-repeat; will-change: transform; }
+.topo-field { position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; opacity: .32; background: url('../img/topo.svg?v=crimson') center / cover no-repeat; will-change: transform; }
 @media (hover: none), (pointer: coarse) { .topo { display: none; } }
 
 /* ---------- reveal on scroll ---------- */
@@ -468,11 +468,3 @@ main { flex: 999 1 560px; min-width: 0; }
 .glitch { position: absolute; z-index: 3; pointer-events: none; opacity: 0; }
 .hero-art .glitch { background: url('../img/hero-icarus-red-v5-landscape.png') center bottom / contain no-repeat; }
 .portrait .glitch { inset: 0; background: url('../img/gods-plan-profile-lines.png') center / contain no-repeat, var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") fixed; }
-@font-face {
-  font-family: 'Unorfl Tag';
-  src: url('../fonts/unifraktur-tag.woff2') format('woff2');
-  font-display: block;
-}
-.glitch-tag { position: absolute; z-index: 4; pointer-events: none; opacity: 0; font-family: 'Unorfl Tag', serif; line-height: 1; white-space: nowrap; }
-.hero-art .glitch-tag { color: #e1062b; text-shadow: 3px 0 rgba(255, 255, 255, .5); }
-.portrait .glitch-tag { color: #ededed; text-shadow: -3px 0 rgba(237, 237, 237, .3); }
