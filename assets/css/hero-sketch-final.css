@@ -410,25 +410,29 @@ main { flex: 999 1 560px; min-width: 0; }
 .form-note { font-size: 13px; line-height: 1.6; color: var(--dim); min-height: 21px; }
 
 @media (min-width: 1280px) {
-  .contact { --contact-art-gap: calc(var(--gutter) + max(0px, calc(50vw - 684px))); }
-  .contact-art {
-    display: block; position: absolute; z-index: 0; width: min(clamp(112px, 9.2vw, 132px), var(--contact-art-gap)); aspect-ratio: 0.514;
-    margin: 0; opacity: .16; pointer-events: none;
+  .contact {
+    display: grid; grid-template-columns: minmax(190px, 220px) minmax(0, 1fr) minmax(190px, 220px);
+    align-items: center; gap: 80px 18px;
   }
-  .contact-art--spartan { left: calc(0px - var(--contact-art-gap)); top: 0; transform: translateY(-18px); }
-  .contact-art--archer { right: calc(0px - var(--contact-art-gap)); top: 84px; transform: translateY(22px); }
-  .contact > section, .contact > form { position: relative; z-index: 1; }
+  .contact-art {
+    display: block; position: relative; width: 100%; max-width: 220px; aspect-ratio: 0.514; grid-row: 2;
+    margin: 0; opacity: 1; pointer-events: none;
+  }
+  .contact-art--spartan { grid-column: 1; transform: translateY(-24px); }
+  .contact-art--archer { grid-column: 3; transform: translateY(32px); }
+  .contact > section { grid-column: 1 / -1; grid-row: 1; min-width: 0; flex: initial; }
+  .contact > form { grid-column: 2; grid-row: 2; min-width: 0; width: 100%; flex: initial; }
 }
 
 @media (max-width: 1279px) {
-  .contact-art {
-    display: block; position: absolute; z-index: 0; width: clamp(144px, 36vw, 220px); aspect-ratio: 0.514;
-    margin: 0; opacity: .22; pointer-events: none;
+  .contact {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 32px 24px;
   }
-  .contact-art--spartan { top: 52px; left: -16px; transform: translateY(-8px) rotate(-3deg); }
-  .contact-art--archer { top: 190px; right: -30px; opacity: .16; transform: translateY(24px) rotate(3deg); }
-  .contact > section, .contact > form { position: relative; z-index: 1; }
-  .contact > form { background: linear-gradient(150deg, rgba(38, 38, 38, .84), rgba(29, 29, 29, .84) 55%, rgba(25, 25, 25, .84)); }
+  .contact > section { grid-column: 1 / -1; grid-row: 1; min-width: 0; flex: initial; }
+  .contact-art { display: block; position: relative; grid-row: 2; width: min(100%, 220px); aspect-ratio: 0.514; margin: 0 auto; opacity: 1; pointer-events: none; }
+  .contact-art--spartan { grid-column: 1; }
+  .contact-art--archer { grid-column: 2; }
+  .contact > form { grid-column: 1 / -1; grid-row: 3; min-width: 0; flex: initial; }
 }
 
 /* ---------- topographic map (pointer devices only) ---------- */
