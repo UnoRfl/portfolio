@@ -40,7 +40,7 @@
     hero.addEventListener('pointerleave', function () { hero.classList.remove('is-red'); });
   }
 
-  // Invert the About artwork's colors in a pointer-following spotlight.
+  // Knock the About lines out of register in a pointer-following circle.
   var portrait = document.querySelector('.portrait');
   if (portrait) {
     var movePortraitReveal = function (e) {
