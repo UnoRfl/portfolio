@@ -441,7 +441,7 @@ main { flex: 999 1 560px; min-width: 0; }
   .hero .lede { max-width: 26ch; font-size: clamp(18px, 5vw, 21px); line-height: 1.4; }
   .hero .actions { gap: 10px; padding-top: 4px; }
   .hero .actions .btn { height: 46px; padding-inline: clamp(12px, 4vw, 18px); border-radius: 12px; font-size: 10px; letter-spacing: .12em; white-space: nowrap; }
-  .hero-art picture { inset: auto 0 32px; height: 54%; }
+  .hero-art picture, .hero-art .glitch { inset: auto 0 32px; height: 54%; }
   .hero-art img { object-fit: contain; object-position: center bottom; }
   .section, .band { padding: 88px 0; }
   .p-head { padding-top: 56px; }
@@ -491,7 +491,7 @@ main { flex: 999 1 560px; min-width: 0; }
   60%, 100% { --g3x: 40%; --g3y: 16%; --g3r: 0px; }
 }
 .glitch { display: none; }
-@media (max-width: 680px) {
+@media (max-width: 680px), (hover: none) {
   .hero-sketch-red, .portrait-invert {
     opacity: 1;
     --shimmer: radial-gradient(circle var(--g1r) at var(--g1x) var(--g1y), #000 0 55%, transparent 100%),
@@ -502,6 +502,10 @@ main { flex: 999 1 560px; min-width: 0; }
   }
   .portrait-invert { animation-duration: 10s, 14s, 8s; }
   .glitch { display: block; position: absolute; z-index: 3; pointer-events: none; opacity: 0; }
-  .hero-art .glitch { inset: auto 0 32px; height: 54%; background: url('../img/hero-icarus-red-v5.png') center bottom / contain no-repeat; }
+  .hero-art .glitch { background: url('../img/hero-icarus-red-v5.png') center bottom / contain no-repeat; }
   .portrait .glitch { inset: 0; background: url('../img/gods-plan-profile.png') center / contain no-repeat, #fff; filter: invert(1); }
+}
+@media (max-width: 680px) and (prefers-reduced-motion: reduce), (hover: none) and (prefers-reduced-motion: reduce) {
+  .hero-sketch-red { animation-duration: 9s, 13s, 7s !important; animation-iteration-count: infinite !important; }
+  .portrait-invert { animation-duration: 10s, 14s, 8s !important; animation-iteration-count: infinite !important; }
 }

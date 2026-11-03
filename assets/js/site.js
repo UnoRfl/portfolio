@@ -63,9 +63,11 @@
   var heroArt = document.querySelector('.hero-art');
   var wide = matchMedia('(min-width: 681px)');
   if (hero && heroArt) {
-    var artPics = heroArt.querySelectorAll('picture');
     var artImg = heroArt.querySelector('.hero-sketch-white img');
+    var redImg = heroArt.querySelector('.hero-sketch-red img');
     var placeArt = function () {
+      var artPics = heroArt.querySelectorAll('picture, .glitch');
+      heroArt.querySelectorAll('.glitch').forEach(function (l) { if (redImg.currentSrc) l.style.backgroundImage = 'url("' + redImg.currentSrc + '")'; });
       if (!wide.matches || !artImg.naturalWidth) {
         artPics.forEach(function (p) { p.style.inset = p.style.width = p.style.height = ''; });
         return;
@@ -107,12 +109,14 @@
     if (document.fonts) document.fonts.ready.then(placeArt);
     if ('ResizeObserver' in window) new ResizeObserver(placeArt).observe(hero);
     else addEventListener('resize', placeArt);
-    wide.addEventListener('change', placeArt);
+    // older iOS Safari only has addListener
+    if (wide.addEventListener) wide.addEventListener('change', placeArt); else wide.addListener(placeArt);
+    redImg.addEventListener('load', placeArt);
   }
 
-  // Phones have no pointer, so strips of the crimson sketch (home) and of the
+  // Phones and tablets have no pointer, so strips of the crimson sketch (home) and of the
   // inverted artwork (About) glitch in on their own: random angle, size, offset and timing.
-  var narrow = matchMedia('(max-width: 680px)');
+  var narrow = matchMedia('(max-width: 680px), (hover: none)');
   var glitch = function (host) {
     var layers = [0, 1, 2].map(function () {
       var l = document.createElement('span');
@@ -141,7 +145,7 @@
         var bx = rand(0, 0.7) * w, by = rand(0, 0.85) * h, bw = rand(0.2, 0.6) * w, bh = rand(6, 70);
         shape = [[bx, by], [bx + bw, by], [bx + bw, by + bh], [bx, by + bh]];
       }
-      l.style.clipPath = 'polygon(' + shape.map(function (pt) { return pt[0].toFixed(1) + 'px ' + pt[1].toFixed(1) + 'px'; }).join(',') + ')';
+      l.style.webkitClipPath = l.style.clipPath = 'polygon(' + shape.map(function (pt) { return pt[0].toFixed(1) + 'px ' + pt[1].toFixed(1) + 'px'; }).join(',') + ')';
       l.style.transform = 'translate(' + rand(-18, 18).toFixed(1) + 'px,' + rand(-4, 4).toFixed(1) + 'px)';
       l.style.opacity = 1;
     };
@@ -161,10 +165,8 @@
     };
     timer = setTimeout(burst, rand(200, 900));
   };
-  if (!reduced) {
-    if (heroArt) glitch(heroArt);
-    if (portrait) glitch(portrait);
-  }
+  if (heroArt) { glitch(heroArt); placeArt(); }
+  if (portrait) glitch(portrait);
 
   // Skeleton -> image: the shimmer stays until the real pixels have decoded
   document.querySelectorAll('.media img').forEach(function (img) {
