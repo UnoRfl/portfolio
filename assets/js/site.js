@@ -190,15 +190,15 @@
       var hostRect = contactHost.getBoundingClientRect();
       var mainRect = contactMain.getBoundingClientRect();
       var artPad = Math.min(10, Math.max(4, document.documentElement.clientWidth * 0.006));
+      var formGap = 24;
       contactArt.forEach(function (art) {
         var isLeft = art.classList.contains('contact-art--spartan');
         var gapWidth = isLeft ? formRect.left - mainRect.left : mainRect.right - formRect.right;
-        var artWidth = Math.max(0, Math.min(300, gapWidth - (artPad * 2)));
-        var gapCenter = isLeft ? (mainRect.left + formRect.left) / 2 : (formRect.right + mainRect.right) / 2;
+        var artWidth = Math.max(0, Math.min(300, gapWidth - formGap - artPad));
         art.style.width = artWidth + 'px';
         art.style.height = Math.min(780, gapWidth * 2.82) + 'px';
-        art.style.left = isLeft ? (gapCenter - artWidth / 2 - hostRect.left) + 'px' : '';
-        art.style.right = isLeft ? '' : (hostRect.right - gapCenter - artWidth / 2) + 'px';
+        art.style.left = isLeft ? (formRect.left - formGap - artWidth - hostRect.left) + 'px' : '';
+        art.style.right = isLeft ? '' : (hostRect.right - formRect.right - formGap - artWidth) + 'px';
         art.style.top = (formRect.top - hostRect.top + (formRect.height - art.offsetHeight) / 2) + 'px';
       });
     };
