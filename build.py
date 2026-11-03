@@ -149,7 +149,7 @@ def page(name, title, desc, active, body, after=''):
 <link rel="icon" href="favicon-64.png?v={ver('favicon-64.png')}" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v={ver('apple-touch-icon.png')}">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/hero-sketch-final.css?v={ver('assets/css/site.css')}">
+<link rel="stylesheet" href="assets/css/hero-sketch-final.css?v={ver('assets/css/hero-sketch-final.css')}">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -360,7 +360,7 @@ def build_about():
     total, months, weeks, today = heatmap()
     body = f'''<div class="wrap">
 <section class="about-top">
-<div class="portrait reveal" role="img" aria-label="うの, Uno in Japanese calligraphy"><img class="mono" src="assets/img/uno-ink-gold.webp" alt="" width="321" height="900"><span class="tag">Web Developer // Game Developer</span></div>
+<figure class="portrait reveal"><img class="portrait-art" src="assets/img/gods-plan-profile.png" alt="Black-and-white engraving of a figure holding an armillary sphere above a golden-ratio spiral, with the words 11:11 and God's plan." width="369" height="615" decoding="async"><span class="portrait-tint" aria-hidden="true"></span></figure>
 <div class="about-copy">
 <div class="eyebrow reveal"><span>About</span></div>
 <h1 class="h1 reveal" style="--d:.06s">I like building things that leave the screen.</h1>

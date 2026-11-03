@@ -40,6 +40,23 @@
     hero.addEventListener('pointerleave', function () { hero.classList.remove('is-red'); });
   }
 
+  // Give the About artwork the same pointer-following crimson reveal as the home sketch.
+  var portrait = document.querySelector('.portrait');
+  if (portrait) {
+    var movePortraitReveal = function (e) {
+      if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+      var rect = portrait.getBoundingClientRect();
+      portrait.style.setProperty('--portrait-x', (e.clientX - rect.left) + 'px');
+      portrait.style.setProperty('--portrait-y', (e.clientY - rect.top) + 'px');
+    };
+    portrait.addEventListener('pointerenter', function (e) {
+      movePortraitReveal(e);
+      if (e.pointerType === 'mouse' || e.pointerType === 'pen') portrait.classList.add('is-red');
+    });
+    portrait.addEventListener('pointermove', movePortraitReveal);
+    portrait.addEventListener('pointerleave', function () { portrait.classList.remove('is-red'); });
+  }
+
   // Skeleton -> image: the shimmer stays until the real pixels have decoded
   document.querySelectorAll('.media img').forEach(function (img) {
     var box = img.closest('.media');
