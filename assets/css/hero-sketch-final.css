@@ -435,13 +435,13 @@ main { flex: 999 1 560px; min-width: 0; }
 
 @media (max-width: 680px) {
   .hero-context { padding-top: 20px; margin-bottom: 16px; }
-  .hero { left: 50%; width: calc(100vw - 32px); height: auto; min-height: 680px; padding: 36px 22px 20px; border-radius: 16px; flex-direction: column; align-items: flex-start; }
+  .hero { left: 50%; width: calc(100vw - 32px); height: auto; min-height: 740px; padding: 36px 22px 20px; border-radius: 16px; flex-direction: column; align-items: flex-start; }
   .hero-copy { width: 100%; gap: 16px; }
   .hero .display { font-size: clamp(38px, 11vw, 52px); line-height: 1; }
   .hero .lede { max-width: 26ch; font-size: clamp(18px, 5vw, 21px); line-height: 1.4; }
   .hero .actions { gap: 10px; padding-top: 4px; }
   .hero .actions .btn { height: 46px; padding-inline: clamp(12px, 4vw, 18px); border-radius: 12px; font-size: 10px; letter-spacing: .12em; white-space: nowrap; }
-  .hero-art picture { inset: auto 0 0; height: 54%; }
+  .hero-art picture { inset: auto 0 32px; height: 54%; }
   .hero-art img { object-fit: contain; object-position: center bottom; }
   .section, .band { padding: 88px 0; }
   .p-head { padding-top: 56px; }
@@ -452,4 +452,64 @@ main { flex: 999 1 560px; min-width: 0; }
   .about-top { padding-top: 56px; }
   .page-head { padding-top: 56px; }
   .lb-bar { gap: 12px; }
+}
+
+/* phones: no pointer to follow, so the crimson sketch and the About inversion
+   shimmer on their own: three drifting glows on different clocks, plus a slice
+   that briefly knocks the layer out of register */
+@property --g1x { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --g1y { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --g1r { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --g2x { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --g2y { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --g2r { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --g3x { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --g3y { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --g3r { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --sy { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --sh { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+@keyframes glowA {
+  0% { --g1x: 34%; --g1y: 30%; --g1r: 0px; }
+  14% { --g1r: 96px; }
+  30% { --g1x: 52%; --g1y: 42%; --g1r: 0px; }
+  52% { --g1x: 62%; --g1y: 70%; --g1r: 0px; }
+  66% { --g1r: 80px; }
+  80%, 100% { --g1x: 44%; --g1y: 58%; --g1r: 0px; }
+}
+@keyframes glowB {
+  0%, 22% { --g2x: 66%; --g2y: 22%; --g2r: 0px; }
+  38% { --g2r: 70px; }
+  50% { --g2x: 58%; --g2y: 34%; --g2r: 0px; }
+  72% { --g2x: 30%; --g2y: 82%; --g2r: 0px; }
+  84% { --g2r: 110px; }
+  100% { --g2x: 46%; --g2y: 64%; --g2r: 0px; }
+}
+@keyframes glowC {
+  0% { --g3x: 50%; --g3y: 50%; --g3r: 0px; }
+  10% { --g3r: 54px; }
+  18% { --g3r: 0px; }
+  44% { --g3x: 72%; --g3y: 46%; --g3r: 0px; }
+  52% { --g3r: 64px; }
+  60%, 100% { --g3x: 40%; --g3y: 16%; --g3r: 0px; }
+}
+@keyframes slice {
+  0%, 31% { --sy: 38%; --sh: 0%; transform: none; }
+  32% { --sy: 38%; --sh: 4%; transform: translateX(5px); }
+  34% { --sy: 61%; --sh: 2%; transform: translateX(-3px); }
+  36%, 77% { --sy: 61%; --sh: 0%; transform: none; }
+  78% { --sy: 24%; --sh: 3%; transform: translateX(-6px); }
+  79.5% { --sy: 27%; --sh: 5%; transform: translateX(2px); }
+  81%, 100% { --sy: 27%; --sh: 0%; transform: none; }
+}
+@media (max-width: 680px) {
+  .hero-sketch-red, .portrait-invert {
+    opacity: 1;
+    --shimmer: radial-gradient(circle var(--g1r) at var(--g1x) var(--g1y), #000 0 55%, transparent 100%),
+               radial-gradient(circle var(--g2r) at var(--g2x) var(--g2y), #000 0 55%, transparent 100%),
+               radial-gradient(circle var(--g3r) at var(--g3x) var(--g3y), #000 0 55%, transparent 100%),
+               linear-gradient(transparent calc(var(--sy) - var(--sh)), #000 0 calc(var(--sy) + var(--sh)), transparent 0);
+    -webkit-mask-image: var(--shimmer); mask-image: var(--shimmer);
+    animation: glowA 9s ease-in-out infinite, glowB 13s ease-in-out -4s infinite, glowC 7s ease-in-out -2s infinite, slice 11s linear -6s infinite;
+  }
+  .portrait-invert { animation-duration: 10s, 14s, 8s, 12s; }
 }
