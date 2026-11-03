@@ -67,7 +67,7 @@
     var redImg = heroArt.querySelector('.hero-sketch-red img');
     var placeArt = function () {
       var artPics = heroArt.querySelectorAll('picture, .glitch');
-      heroArt.querySelectorAll('.glitch').forEach(function (l) { if (redImg.currentSrc) l.style.backgroundImage = 'url("' + redImg.currentSrc + '")'; });
+      heroArt.querySelectorAll('.glitch:not(.glitch--hero-black)').forEach(function (l) { if (redImg.currentSrc) l.style.backgroundImage = 'url("' + redImg.currentSrc + '")'; });
       if (!wide.matches || !artImg.naturalWidth) {
         artPics.forEach(function (p) { p.style.inset = p.style.width = p.style.height = ''; });
         return;
@@ -115,10 +115,12 @@
   }
 
   // The home sketch and About line art glitch in random strips.
-  var glitch = function (host) {
-    var layers = [0, 1, 2].map(function () {
+  var glitch = function (host, style) {
+    var heroRoles = ['red', 'black', 'deep'];
+    var layers = [0, 1, 2].map(function (index) {
       var l = document.createElement('span');
       l.className = 'glitch';
+      if (style === 'hero') l.className += ' glitch--hero-' + heroRoles[index];
       l.setAttribute('aria-hidden', 'true');
       host.appendChild(l);
       return l;
@@ -163,7 +165,7 @@
     setTimeout(burst, rand(200, 900));
   };
   if (heroArt) {
-    glitch(heroArt);
+    glitch(heroArt, 'hero');
     placeArt();
   }
   if (portrait) glitch(portrait);

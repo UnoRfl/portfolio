@@ -469,4 +469,7 @@ main { flex: 999 1 560px; min-width: 0; }
    carry the page background so the lines under them drop out instead of doubling */
 .glitch { position: absolute; z-index: 3; pointer-events: none; opacity: 0; }
 .hero-art .glitch { background: url('../img/hero-icarus-red-v5-landscape.png') center bottom / contain no-repeat; }
+.hero-art .glitch--hero-red { z-index: 2; filter: drop-shadow(0 0 5px rgba(242, 91, 108, .45)); }
+.hero-art .glitch--hero-black { z-index: 4; background: #030304; box-shadow: inset 0 1px 0 rgba(255, 113, 128, .8), inset 0 -1px 0 rgba(184, 20, 49, .85); }
+.hero-art .glitch--hero-deep { z-index: 3; filter: brightness(.58) saturate(1.35) drop-shadow(0 0 4px rgba(184, 20, 49, .55)); }
 .portrait .glitch { inset: 0; background: url('../img/gods-plan-profile-lines.png') center / contain no-repeat, var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") fixed; }
