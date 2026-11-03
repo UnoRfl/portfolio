@@ -360,7 +360,7 @@ def build_about():
     total, months, weeks, today = heatmap()
     body = f'''<div class="wrap">
 <section class="about-top">
-<figure class="portrait reveal"><img class="portrait-art" src="assets/img/gods-plan-profile.png" alt="Black-and-white engraving of a figure holding an armillary sphere above a golden-ratio spiral, with the words 11:11 and God's plan." width="369" height="615" decoding="async"><span class="portrait-tint" aria-hidden="true"></span></figure>
+<figure class="portrait reveal"><img class="portrait-art" src="assets/img/gods-plan-profile.png" alt="Black-and-white engraving of a figure holding an armillary sphere above a golden-ratio spiral, with the words 11:11 and God's plan." width="369" height="615" decoding="async"><span class="portrait-invert" aria-hidden="true"></span></figure>
 <div class="about-copy">
 <div class="eyebrow reveal"><span>About</span></div>
 <h1 class="h1 reveal" style="--d:.06s">I like building things that leave the screen.</h1>

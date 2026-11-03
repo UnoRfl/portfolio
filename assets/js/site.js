@@ -40,7 +40,7 @@
     hero.addEventListener('pointerleave', function () { hero.classList.remove('is-red'); });
   }
 
-  // Give the About artwork the same pointer-following crimson reveal as the home sketch.
+  // Invert the About artwork's colors in a pointer-following spotlight.
   var portrait = document.querySelector('.portrait');
   if (portrait) {
     var movePortraitReveal = function (e) {
@@ -51,10 +51,10 @@
     };
     portrait.addEventListener('pointerenter', function (e) {
       movePortraitReveal(e);
-      if (e.pointerType === 'mouse' || e.pointerType === 'pen') portrait.classList.add('is-red');
+      if (e.pointerType === 'mouse' || e.pointerType === 'pen') portrait.classList.add('is-inverted');
     });
     portrait.addEventListener('pointermove', movePortraitReveal);
-    portrait.addEventListener('pointerleave', function () { portrait.classList.remove('is-red'); });
+    portrait.addEventListener('pointerleave', function () { portrait.classList.remove('is-inverted'); });
   }
 
   // Skeleton -> image: the shimmer stays until the real pixels have decoded

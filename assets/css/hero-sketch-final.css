@@ -319,13 +319,14 @@ main { flex: 999 1 560px; min-width: 0; }
 }
 .portrait:hover { transform: translateY(-6px); }
 .portrait-art { position: relative; z-index: 1; display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; }
-.portrait-tint {
-  position: absolute; inset: 0; z-index: 2; pointer-events: none; background: #e1062b; mix-blend-mode: screen; opacity: 0;
+.portrait-invert {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  -webkit-backdrop-filter: invert(1); backdrop-filter: invert(1);
   -webkit-mask-image: radial-gradient(circle 120px at var(--portrait-x, 50%) var(--portrait-y, 50%), #000 0 68%, transparent 100%);
   mask-image: radial-gradient(circle 120px at var(--portrait-x, 50%) var(--portrait-y, 50%), #000 0 68%, transparent 100%);
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; transition: opacity .2s ease;
 }
-.portrait.is-red .portrait-tint { opacity: 1; }
+.portrait.is-inverted .portrait-invert { opacity: 1; }
 .about-copy { flex: 1 1 420px; max-width: 62ch; display: flex; flex-direction: column; gap: 24px; }
 .about-copy .h1 { font-size: clamp(40px, 4.6vw, 64px); line-height: 1.05; letter-spacing: -.03em; }
 .about-copy .actions { padding-top: 8px; }
