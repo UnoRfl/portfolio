@@ -400,7 +400,6 @@ def build_about():
 def build_contact():
     body = f'''<div class="wrap">
 <div class="contact">
-<figure class="contact-art contact-art--spartan" style="--contact-art: url('../img/contact-spartan.webp')" aria-hidden="true"><img src="assets/img/contact-spartan.webp" alt="" width="771" height="1500" decoding="async"></figure>
 <section>
 <div class="eyebrow reveal"><span>Contact</span></div>
 <h1 class="h1 reveal" style="--d:.06s">Let’s build something</h1>
@@ -418,7 +417,6 @@ def build_contact():
 <button type="submit" class="btn btn-p">Send message <span class="arr">→</span></button>
 <p class="form-note" aria-live="polite"></p>
 </form>
-<figure class="contact-art contact-art--archer" style="--contact-art: url('../img/contact-archer.webp')" aria-hidden="true"><img src="assets/img/contact-archer.webp" alt="" width="857" height="1500" decoding="async"></figure>
 </div>
 </div>'''
     page('contact.html', 'Contact', 'Get in touch with Uno about web apps, small-business tools, internships or game and hardware collaborations.', 'contact', body)

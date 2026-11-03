@@ -61,7 +61,6 @@
   // slid right (up to a margin from the border) when the copy would touch it,
   // and shrunk only once it cannot slide any further.
   var heroArt = document.querySelector('.hero-art');
-  var contactArt = document.querySelectorAll('.contact-art');
   var wide = matchMedia('(min-width: 681px)');
   if (hero && heroArt) {
     var artImg = heroArt.querySelector('.hero-sketch-white img');
@@ -170,7 +169,6 @@
     placeArt();
   }
   if (portrait) glitch(portrait);
-  contactArt.forEach(function (art) { glitch(art); });
 
   // Skeleton -> image: the shimmer stays until the real pixels have decoded
   document.querySelectorAll('.media img').forEach(function (img) {
