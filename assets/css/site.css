@@ -261,7 +261,8 @@ main { flex: 999 1 560px; min-width: 0; }
 .count { font-variant-numeric: tabular-nums; }
 
 /* ---------- project ---------- */
-.p-hero { aspect-ratio: 12 / 5; max-height: 600px; border-radius: 0; }
+.p-hero { width: 100%; aspect-ratio: 12 / 5; max-height: 82vh; border-radius: 0; }
+.p-hero img { object-position: center; }
 .p-head { padding: 96px 0 64px; display: flex; flex-direction: column; gap: 24px; }
 .p-head .link { align-self: flex-start; color: var(--dim); }
 .p-meta { padding: 32px 0; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 32px; }
