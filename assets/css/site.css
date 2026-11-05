@@ -263,6 +263,8 @@ main { flex: 999 1 560px; min-width: 0; }
 /* ---------- project ---------- */
 .p-hero { width: 100%; aspect-ratio: 12 / 5; max-height: 82vh; border-radius: 0; }
 .p-hero img { object-position: center; }
+.p-hero-fade::after { content: ''; position: absolute; inset: auto 0 0; height: 16%; z-index: 2; pointer-events: none; background: linear-gradient(to bottom, rgba(25, 25, 25, 0), #191919); }
+@media (max-width: 680px) { .p-hero:not(.p-hero-wide) { aspect-ratio: 16 / 9; } }
 .p-head { padding: 96px 0 64px; display: flex; flex-direction: column; gap: 24px; }
 .p-head .link { align-self: flex-start; color: var(--dim); }
 .p-meta { padding: 32px 0; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 32px; }

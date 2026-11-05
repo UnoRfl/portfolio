@@ -280,6 +280,11 @@ def build_work():
     page('work.html', 'Work', 'Web apps, hardware and 3D work by Uno, most of it built for a real person with a real problem.', 'work', body)
 
 
+# each project page borrows its own brand color for dividers, numbers and links
+ACCENTS = {'tpn': ('#e8a33d', '#f5bb5f'), 'orbit': ('#a979ff', '#c29dff'),
+           'mochi': ('#ff8fb5', '#ffadc9'), 'pocket': ('#e070d2', '#ee93e2')}
+
+
 def build_project(i, p):
     nxt = PROJECTS[(i + 1) % len(PROJECTS)]
     c = cover_name(p)
@@ -289,7 +294,11 @@ def build_project(i, p):
     shots = ''.join(
         f'<button type="button" class="shot media reveal" data-full="assets/img/{s}.webp" data-cap="{e(cap)}" aria-label="Open screenshot: {e(cap)}"><img src="assets/img/{s}.webp" alt="" loading="lazy" decoding="async"></button>'
         for s, cap in p['shots'])
-    body = f'''{media(c + '-hero', e(p['title']), 'p-hero', eager=True)}
+    acc = ACCENTS.get(c)
+    tint = f'<style>main {{ --accent: {acc[0]}; --accent-hi: {acc[1]}; }}</style>' if acc else ''
+    # the bottom fade suits the darker heroes; on the light ones it reads as a grey smear
+    hero_cls = 'p-hero' + (' p-hero-wide' if c == 'pocket' else '') + (' p-hero-fade' if c in ('tpn', 'orbit') else '')
+    body = f'''{tint}{media(c + '-hero', e(p['title']), hero_cls, eager=True)}
 <div class="wrap">
 <header class="p-head">
 <a class="link reveal" href="work.html">← All work</a>
